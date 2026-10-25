@@ -79,11 +79,26 @@ class PublicDemo(unittest.TestCase):
   build()
   page=(ROOT/'docs/index.html').read_text()
   data=(ROOT/'docs/demo-data.js').read_text()
-  self.assertNotIn('id="api-token"',page)
-  self.assertIn('connect-src \'none\'',page)
+  self.assertIn('id="api-token" type="password"',page)
+  self.assertIn('connect-src https://api.apify.com',page)
   self.assertIn('"mode": "synthetic"',data)
   for value in ['hellofresh.com','personio.com','console.apify.com/actors/runs/','/Users/']:
    self.assertNotIn(value,data)
+ def test_test_run_snapshot_has_no_private_source_records(self):
+  sample=json.loads((ROOT/'examples/public-test/report.json').read_text())
+  self.assertEqual(sample['mode'],'public-snapshot')
+  self.assertEqual([c['domain'] for c in sample['companies']],['hellofresh.com','n26.com','personio.com'])
+  self.assertEqual(sample['companies'][2]['scan_status'],'Unknown')
+  for key in ['raw_company','raw_technology','manifest','defaultDatasetId','usageTotalUsd','cap_usd']:
+   self.assertNotIn('"'+key+'"',json.dumps(sample))
+  self.assertNotIn('console.apify.com/actors/runs/',json.dumps(sample))
+ @unittest.skipUnless(shutil.which('node'),'Node needed for browser normalizer parity')
+ def test_browser_normalizer_matches_python_facts(self):
+  fixture=ROOT/'tests/fixtures/basic';expected=normalize(fixture)
+  payload={name:json.loads((fixture/(name+'.json')).read_text()) for name in ['manifest','technology','firmographics']}
+  js="const c=require('./static/browser-apify.js');let x='';process.stdin.on('data',d=>x+=d);process.stdin.on('end',()=>{const r=JSON.parse(x);console.log(JSON.stringify(c.normalize(r.manifest.domains,r.technology,r.firmographics,r.manifest.runs,r.manifest.created_at)));});"
+  actual=json.loads(subprocess.check_output(['node','-e',js],cwd=ROOT,input=json.dumps(payload).encode()))
+  self.assertEqual([c['facts'] for c in actual['companies']],[c['facts'] for c in expected['companies']])
  @unittest.skipUnless(shutil.which('node'),'Node needed for browser Excel test')
  def test_browser_workbook_is_valid_zip_and_contains_literal_cells(self):
   import io,zipfile,xml.etree.ElementTree as ET

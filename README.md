@@ -6,9 +6,9 @@ StackSignal combines public technology observations with company profiles, lets 
 
 **[Open the interactive demo](https://vinaynaik432-debug.github.io/website-technology-intelligence/)** · [Source code](https://github.com/vinaynaik432-debug/website-technology-intelligence)
 
-![StackSignal dashboard with HubSpot and Figma selected](docs/assets/dashboard.png)
+![StackSignal with sample data and visitor-owned research choices](docs/assets/dashboard.png)
 
-> The public demo uses eight fictional companies and synthetic observations. It does not make claims about real companies or run paid scans. Run the Python app locally to research real domains with your own Apify account.
+> Choose **Explore the test-run sample** for a cleaned snapshot of HelloFresh, N26 and Personio from 25 October 2026, or **Test with my own Apify token** to research up to five domains in the browser. Samples require no key or credits. Live research starts only when you explicitly submit it and uses your own Apify account. An eight-company fictional walkthrough is also available.
 
 ## The GTM problem
 
@@ -24,32 +24,42 @@ For example, someone exploring an integration between a CRM and a design workflo
 
 ## Try it in 60 seconds
 
-1. Open the public demo and click **Try HubSpot + Figma**.
-2. The default **All selected (AND)** filter returns **Acme Studio** and **Rivet Cloud**, two fictional companies.
-3. Switch to **Any selected (OR)** to see five companies with at least one of those signals.
-4. Switch back to AND. Under **More filters & columns**, set minimum LinkedIn employees to `100`: only Rivet Cloud remains.
-5. Open a company to see its evidence and a rule-based shortlist rationale.
-6. Choose **Export Excel** to download the filtered companies. The workbook retains every tool column in the batch.
+1. Open the site and choose **Explore the test-run sample**. No API token is required.
+2. Click **Filter HubSpot + Figma**. In this saved snapshot, HelloFresh has both provider-reported signals. This is evidence for further research, not verified current use.
+3. Open the company to inspect the source, method and collection date. Personio's blocked scan remains Unknown.
+4. Export the filtered companies to Excel.
+5. For a controlled walkthrough, select **Fictional walkthrough** under Research dataset. HubSpot AND Figma returns two fictional companies; OR returns five.
 
-A blocked fictional company and a weak Figma observation demonstrate why **Unknown** must remain different from **Not detected**.
+### Test with your own account
+
+1. Choose **Test with my own Apify token**.
+2. Enter up to five domains, or upload a CSV/TXT list.
+3. Expand Connection & scan settings and paste an **Apify** API token. No GitHub or AI-model key is needed for company research.
+4. Choose the total maximum charge (default **$0.50**, supported range **$0.10–$5.00**) and confirm that the run uses your Apify credits.
+5. Click **Research domains**. Both Actors run in your Apify account; their console links appear as starts are acknowledged.
+6. Filter and export the results before refreshing. **Clear my browser results** removes them from this tab; it does not delete runs in your Apify account.
+
+The token is held only in memory, cleared from the input when research starts, and released by the client when the attempt ends. It is sent directly to `api.apify.com` in the Authorization header, never placed in a URL, browser storage, exported data or a project server. Use a dedicated, short-lived token with the required Actor/run/dataset permissions. See [Apify’s token instructions](https://docs.apify.com/integrations/api). As with any browser application, the page's own code and browser environment must be trusted; this is not a credential vault.
+
+Do not refresh or close the tab while a scan is being monitored. Started cloud runs can continue and incur charges even if the tab closes. The Actors receive a five-minute timeout and a per-Actor cap; the two caps together do not exceed the selected total. After an ambiguous start failure, inspect your Apify account before starting again.
 
 ## Features
 
-| Capability | Public Pages demo | Local Python app |
+| Capability | Published browser app | Local Python app |
 | --- | --- | --- |
 | Search company name/domain | Yes | Yes |
 | Add multiple tools and choose AND/OR | Yes | Yes |
 | Filter category, country, industry and employee count | Yes | Yes |
 | Separate website observations from DNS signals | Yes | Yes |
-| Inspect detection method, score and available evidence | Synthetic examples | Returned provider evidence |
+| Inspect detection method, score and available evidence | Saved samples or your Actor results | Returned provider evidence |
 | Explain shortlist matches and suggested verification | Yes, explicit rules | Yes, explicit rules |
 | Export filtered `.xlsx` or JSON | Yes | Yes |
-| Enter domains / upload CSV or TXT | No live scanning | Yes, up to 100 domains per batch |
-| Run Apify technology and company enrichment Actors | No | Yes, with your token |
-| Browse saved research without another scan | Fixed sample | Yes |
-| Retry incomplete websites and collect fallback DNS evidence | Demonstrated only | Yes |
+| Enter domains / upload CSV or TXT | Yes, up to 5 domains per run | Yes, up to 100 domains per batch |
+| Run Apify technology and company enrichment Actors | Yes, directly from your browser with your token | Yes, with your token |
+| Browse saved research without another scan | Reviewed samples; your last run while the tab remains open | Yes, saved on disk |
+| Retry incomplete websites and collect fallback DNS evidence | Use the local app for advanced recovery | Yes |
 
-GitHub Pages serves static files and cannot execute the Python backend. This separation makes the public demo usable without exposing credentials or funding visitors' scans.
+GitHub Pages still serves static files; it does not execute Python. Browser research calls Apify directly, while Python remains an optional local workflow with disk persistence, larger batches and recovery tools. There is no shared developer API key and visitors do not spend the project owner’s credits.
 
 ## Run locally
 
@@ -151,9 +161,9 @@ The Apify API client also respects `Retry-After` on retryable read requests. If 
 2. Export settings, including evidence scope and minimum match score.
 3. Technology category columns.
 4. Individual tool columns, named `Tool | Category | Tool name`.
-5. In local exports, the complete returned company and technology JSON, split into numbered cells to preserve long records.
+5. In local exports and visitor-run browser exports, the complete returned company and technology JSON, split into numbered cells to preserve long records. The published test sample deliberately omits these raw records.
 
-Both exports have frozen headers/company identifiers and column filters. Local Excel also includes a styled table and detection-state validation. The public demo uses a small dependency-free OOXML writer; it produces real `.xlsx` files in the browser, with literal strings rather than executable formulas.
+Both exports have frozen headers/company identifiers and column filters. Local Excel also includes a styled table and detection-state validation. The browser app uses a small dependency-free OOXML writer; it produces real `.xlsx` files in the browser, with literal strings rather than executable formulas.
 
 Exporting uses the active filters but includes all tool columns in the batch. Editing a downloaded workbook does not update the dashboard or trigger research. The JSON export includes the applied filters and selected company records.
 
@@ -173,11 +183,14 @@ flowchart TD
     H --> I[Evidence-aware AND/OR filters]
     I --> J[Shortlist rationale and company details]
     I --> K[Excel / JSON export]
-    L[Fictional fixtures only] --> M[Static Pages build]
+    L[Reviewed public snapshot + fictional fixtures] --> M[Static Pages build]
     M --> N[Browser filters and local file export]
+    O[Visitor token + explicit capped scan] --> P[Direct browser requests to Apify]
+    P --> Q[Results in browser memory]
+    Q --> N
 ```
 
-The Python server uses the standard library and binds only to loopback. The frontend is plain HTML, CSS and JavaScript. Browser and Python filter implementations have parity tests. No n8n subscription or frontend build framework is required.
+The Python server uses the standard library and binds only to loopback. The frontend is plain HTML, CSS and JavaScript. Browser and Python filtering and company normalization have parity tests. No n8n subscription or frontend build framework is required.
 
 Excel export can optionally use a locally installed Artifact Tool runtime. On a normal installation, `openpyxl` is the portable exporter; no proprietary runtime or Node dependency is required to use the app.
 
@@ -193,6 +206,14 @@ Provider schemas were reviewed on 25 October 2026. Pins reduce interface drift b
 
 ## Spending controls
 
+### Visitor runs on GitHub Pages
+
+Visitors select a per-run maximum from $0.10 to $5.00 and explicitly acknowledge their own account charges. Both Actor prices are checked before either run starts. The total is split between the two Actors and passed as `maxTotalChargeUsd`; the client checks acknowledgment and requests an abort if acknowledgment is missing. Start requests are not automatically retried. Run links remain visible after errors when a run ID was received.
+
+This browser limit is **per submitted scan**, not a persistent account-wide budget. The browser does not store a spending ledger. Apify account limits and billing remain the visitor’s responsibility. Monitoring and results disappear on refresh; runs and datasets remain in Apify.
+
+### Local portfolio pilot
+
 This portfolio pilot starts with a **US$5 cumulative reservation ceiling** in the local `data/budget.json` ledger.
 
 - A scan reserves its whole selected maximum before starting Actors.
@@ -207,13 +228,13 @@ Do not reset the ledger to evade the test ceiling. Any larger pilot needs an exp
 
 ## Privacy and publication boundaries
 
-The public repository contains application source, tests, documentation and fictional fixtures. The Pages build reads only `examples/demo`, never `data/runs`.
+The public repository contains application source, tests, documentation, fictional fixtures and one deliberately sanitized test-run snapshot. The Pages build reads `examples/demo` and the reviewed `examples/public-test/report.json`, never arbitrary `data/runs`. The real-company snapshot contains selected public company facts and technology observations; it omits account/run identifiers, billing, raw provider records, personal contacts and verification values.
 
-- Apify credentials remain in process/browser memory and are sent only to Apify. They are not written into results or exports.
+- Apify credentials remain in process/browser memory and are sent only to Apify. They are not written into results, exports, browser storage or logs created by this application. The published page never receives the project owner’s token.
 - Live research is sent to the configured Apify Actors. On fallback, the requested company domain is also queried through Cloudflare's DNS resolver.
 - Local research, exports, `.env` files, temporary publishing tools and provider snapshots are ignored by Git.
 - The local server checks Host, Origin and a session token on data-changing requests. It is not designed to be exposed as a public multi-user service.
-- The public page contains no credential input, analytics or external scripts. Its content security policy disables application data connections. GitHub still serves and operates the hosting infrastructure.
+- The public page offers an optional password field for a visitor’s Apify token. It has no analytics or external scripts. Its content security policy permits application connections only to `https://api.apify.com`. Merely viewing samples makes no Apify requests. GitHub still serves and operates the hosting infrastructure.
 - CSV export neutralizes formula-like text. The browser workbook stores text as literal cells. Untrusted source strings are rendered as text rather than injected HTML.
 - Never publish real datasets by simply copying your local `data` or `outputs` folders into `docs`.
 
@@ -223,13 +244,14 @@ See [SECURITY.md](SECURITY.md) for reporting and operational boundaries.
 
 ```bash
 python3 -m unittest discover -s tests -v
+node tests/test_browser_client.js  # optional Node checks for the browser integration
 ```
 
-The release includes **23 automated tests** covering input normalization, ambiguous/missing data, tri-state evidence, AND/OR filtering, scope and confidence, browser/Python parity, Excel safety, public-demo isolation, budget reservations, non-retried run starts, cooldowns, DNS redaction and retry preservation.
+The release includes **25 Python tests and 9 browser-client checks** covering input normalization, ambiguous/missing data, tri-state evidence, AND/OR filtering, scope and confidence, browser/Python parity, Excel safety, public-demo isolation, budget reservations, non-retried run starts, cooldowns, DNS redaction and retry preservation. Browser-client checks use a mocked transport to verify capped starts, header-only credentials, pricing checks, non-retried ambiguous POSTs, missing-cap aborts, complete source export and absence of browser persistence.
 
 Node-dependent checks are skipped when Node is unavailable; Python application tests still run. Browser checks also verified the two-company AND result, five-company OR result and filtered Excel download. The downloaded workbook was reopened to verify both companies, both tool signals, frozen headers and filters.
 
-These checks validate application behavior. They do not independently validate every third-party company fact or technology observation. The initial live pilot covered three domains; large-batch performance has not been benchmarked.
+These checks validate application behavior. They do not independently validate every third-party company fact or technology observation. The original live pilot covered three domains. Browser CORS/preflight access was verified without a paid run; the browser collector’s paid-run lifecycle is covered by mocked integration checks, not a new chargeable end-to-end scan. Large-batch performance has not been benchmarked.
 
 ### Rebuild the Pages demo
 
@@ -238,7 +260,7 @@ python3 scripts/build_demo.py
 python3 -m http.server 8920 --bind 127.0.0.1 --directory docs
 ```
 
-The public build rejects non-synthetic fixtures or domains outside the demonstration's `example.com` subdomains. Commit the reviewed `docs` output. In GitHub repository settings, configure Pages to deploy from **main → /docs**. `.nojekyll` keeps the assets buildless.
+The public build rejects non-synthetic fictional fixtures or domains outside their `example.com` subdomains, and rejects raw-source/manifest fields in the reviewed real-company snapshot. Commit the reviewed `docs` output. In GitHub repository settings, configure Pages to deploy from **main → /docs**. `.nojekyll` keeps the assets buildless.
 
 ## What this project demonstrates
 
@@ -266,8 +288,9 @@ No revenue lift, interview outcomes or sales conversions are claimed by this rep
 ```text
 app.py                    Local dashboard and API
 intelligence/             Collection, normalization, recovery and export
-static/                   Shared dashboard UI and browser engines
+static/                   Shared UI, filtering, Excel and browser Apify client
 examples/demo/            Fictional public demonstration data
+examples/public-test/     Sanitized real-company test snapshot
 examples/domains.csv      Domain import example
 scripts/build_demo.py     Safe static Pages build
 scripts/audit_public.py    Publication inventory and secret-pattern checks

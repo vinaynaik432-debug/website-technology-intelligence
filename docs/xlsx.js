@@ -15,7 +15,7 @@
   const out=new Uint8Array(offset+size+22);let pos=0;for(const c of chunks){out.set(c,pos);pos+=c.length;}return out;
  }
  function workbook(table){
-  const rows=[['SYNTHETIC DEMO — fictional companies and observations'],['Detected means a public signal, not confirmed active use.'],[`Scope: ${table.scope}; minimum match score: ${table.confidence}; ${table.created_at}`],[],table.headers,...table.rows];
+  const rows=[[table.mode==='synthetic'?'SYNTHETIC DEMO — fictional companies and observations':table.mode==='public-snapshot'?'SAVED TEST RUN — public company signals; private run identifiers omitted':'YOUR APIFY RESEARCH — public signals, not confirmed active use'],['Detected means a public signal, not confirmed active use.'],[`Scope: ${table.scope}; minimum match score: ${table.confidence}; ${table.created_at}`],[],table.headers,...table.rows];
   const last=col(table.headers.length-1),range=`A5:${last}${rows.length}`;
   const rowxml=rows.map((r,i)=>`<row r="${i+1}">${r.map((value,j)=>{const ref=col(j)+(i+1),s=i===4?' s="1"':'';return typeof value==='number'&&Number.isFinite(value)?`<c r="${ref}"${s}><v>${value}</v></c>`:`<c r="${ref}" t="inlineStr"${s}><is><t xml:space="preserve">${xml(value)}</t></is></c>`;}).join('')}</row>`).join('');
   const ns='http://schemas.openxmlformats.org/spreadsheetml/2006/main';
