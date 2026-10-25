@@ -1,0 +1,7 @@
+[
+ {"url":"https://acme.example.com","domain":"acme.example.com","status":"ok","technology":"Example Analytics","categories":["Analytics"],"confidence":100,"foundIn":"website","detectedBy":["scriptSrc"],"checkedAt":"2026-10-25T12:00:00Z"},
+ {"url":"https://acme.example.com","domain":"acme.example.com","status":"ok","technology":"Example CRM","categories":["CRM"],"confidence":100,"foundIn":"dns","detectedBy":["dns:TXT"],"checkedAt":"2026-10-25T12:00:00Z"},
+ {"url":"https://north.example.com","domain":"north.example.com","status":"ok","technology":"Example Store","categories":["Ecommerce"],"confidence":100,"foundIn":"website","detectedBy":["scriptSrc"],"checkedAt":"2026-10-25T12:00:00Z"},
+ {"url":"https://north.example.com","domain":"north.example.com","status":"ok","technology":"Example Analytics","categories":["Analytics"],"confidence":25,"foundIn":"website","detectedBy":["html"],"checkedAt":"2026-10-25T12:00:00Z"},
+ {"url":"https://unavailable.example.com","domain":"unavailable.example.com","status":"error","error":"Fictional blocked-site example","checkedAt":"2026-10-25T12:00:00Z"}
+]

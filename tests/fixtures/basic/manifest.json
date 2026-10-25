@@ -1,0 +1,1 @@
+{"id":"demo","created_at":"2026-10-25T12:00:00Z","mode":"synthetic","domains":["acme.example.com","north.example.com","unavailable.example.com"],"status":"Complete","runs":{"technology":{"status":"SUCCEEDED"},"firmographics":{"status":"SUCCEEDED"}}}

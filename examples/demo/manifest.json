@@ -1,0 +1,24 @@
+{
+  "id": "demo",
+  "created_at": "2026-10-25T12:00:00Z",
+  "mode": "synthetic",
+  "domains": [
+    "acme.example.com",
+    "north.example.com",
+    "vista.example.com",
+    "rivet.example.com",
+    "harbour.example.com",
+    "meadow.example.com",
+    "orbit.example.com",
+    "cobalt.example.com"
+  ],
+  "status": "Partial",
+  "runs": {
+    "technology": {
+      "status": "SUCCEEDED"
+    },
+    "firmographics": {
+      "status": "SUCCEEDED"
+    }
+  }
+}

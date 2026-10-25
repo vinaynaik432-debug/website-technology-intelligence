@@ -1,0 +1,162 @@
+[
+  {
+    "input": "acme.example.com",
+    "name": "Acme Studio (sample)",
+    "website": "https://acme.example.com",
+    "industry": "Software",
+    "foundedYear": 2018,
+    "companySize": "51\u2013200 employees",
+    "employeeCount": 86,
+    "headquarters": "Berlin, Germany",
+    "headquartersCity": "Berlin",
+    "headquartersCountryName": "Germany",
+    "offices": [
+      {
+        "city": "Berlin",
+        "countryName": "Germany"
+      }
+    ],
+    "scrapedAt": "2026-10-25T12:00:00Z",
+    "description": "Fictional company for demonstrating the research workflow. All attributes are synthetic."
+  },
+  {
+    "input": "north.example.com",
+    "name": "North Goods (sample)",
+    "website": "https://north.example.com",
+    "industry": "Retail",
+    "foundedYear": 2020,
+    "companySize": "11\u201350 employees",
+    "employeeCount": 32,
+    "headquarters": "Amsterdam, Netherlands",
+    "headquartersCity": "Amsterdam",
+    "headquartersCountryName": "Netherlands",
+    "offices": [
+      {
+        "city": "Amsterdam",
+        "countryName": "Netherlands"
+      }
+    ],
+    "scrapedAt": "2026-10-25T12:00:00Z",
+    "description": "Fictional company for demonstrating the research workflow. All attributes are synthetic."
+  },
+  {
+    "input": "vista.example.com",
+    "name": "Vista Works (sample)",
+    "website": "https://vista.example.com",
+    "industry": "Professional services",
+    "foundedYear": 2016,
+    "companySize": "51\u2013200 employees",
+    "employeeCount": 140,
+    "headquarters": "Paris, France",
+    "headquartersCity": "Paris",
+    "headquartersCountryName": "France",
+    "offices": [
+      {
+        "city": "Paris",
+        "countryName": "France"
+      }
+    ],
+    "scrapedAt": "2026-10-25T12:00:00Z",
+    "description": "Fictional company for demonstrating the research workflow. All attributes are synthetic."
+  },
+  {
+    "input": "rivet.example.com",
+    "name": "Rivet Cloud (sample)",
+    "website": "https://rivet.example.com",
+    "industry": "Software",
+    "foundedYear": 2019,
+    "companySize": "201\u2013500 employees",
+    "employeeCount": 260,
+    "headquarters": "Hamburg, Germany",
+    "headquartersCity": "Hamburg",
+    "headquartersCountryName": "Germany",
+    "offices": [
+      {
+        "city": "Hamburg",
+        "countryName": "Germany"
+      }
+    ],
+    "scrapedAt": "2026-10-25T12:00:00Z",
+    "description": "Fictional company for demonstrating the research workflow. All attributes are synthetic."
+  },
+  {
+    "input": "harbour.example.com",
+    "name": "Harbour Labs (sample)",
+    "website": "https://harbour.example.com",
+    "industry": "Software",
+    "foundedYear": null,
+    "companySize": "Unknown",
+    "employeeCount": null,
+    "headquarters": "Munich, Germany",
+    "headquartersCity": "Munich",
+    "headquartersCountryName": "Germany",
+    "offices": [
+      {
+        "city": "Munich",
+        "countryName": "Germany"
+      }
+    ],
+    "scrapedAt": "2026-10-25T12:00:00Z",
+    "description": "Fictional company for demonstrating the research workflow. All attributes are synthetic."
+  },
+  {
+    "input": "meadow.example.com",
+    "name": "Meadow Health (sample)",
+    "website": "https://meadow.example.com",
+    "industry": "Healthcare",
+    "foundedYear": 2017,
+    "companySize": "51\u2013200 employees",
+    "employeeCount": 75,
+    "headquarters": "Copenhagen, Denmark",
+    "headquartersCity": "Copenhagen",
+    "headquartersCountryName": "Denmark",
+    "offices": [
+      {
+        "city": "Copenhagen",
+        "countryName": "Denmark"
+      }
+    ],
+    "scrapedAt": "2026-10-25T12:00:00Z",
+    "description": "Fictional company for demonstrating the research workflow. All attributes are synthetic."
+  },
+  {
+    "input": "orbit.example.com",
+    "name": "Orbit Metrics (sample)",
+    "website": "https://orbit.example.com",
+    "industry": "Software",
+    "foundedYear": 2021,
+    "companySize": "11\u201350 employees",
+    "employeeCount": 21,
+    "headquarters": "Stockholm, Sweden",
+    "headquartersCity": "Stockholm",
+    "headquartersCountryName": "Sweden",
+    "offices": [
+      {
+        "city": "Stockholm",
+        "countryName": "Sweden"
+      }
+    ],
+    "scrapedAt": "2026-10-25T12:00:00Z",
+    "description": "Fictional company for demonstrating the research workflow. All attributes are synthetic."
+  },
+  {
+    "input": "cobalt.example.com",
+    "name": "Cobalt Logistics (sample)",
+    "website": "https://cobalt.example.com",
+    "industry": "Logistics",
+    "foundedYear": 2013,
+    "companySize": "201\u2013500 employees",
+    "employeeCount": 480,
+    "headquarters": "Barcelona, Spain",
+    "headquartersCity": "Barcelona",
+    "headquartersCountryName": "Spain",
+    "offices": [
+      {
+        "city": "Barcelona",
+        "countryName": "Spain"
+      }
+    ],
+    "scrapedAt": "2026-10-25T12:00:00Z",
+    "description": "Fictional company for demonstrating the research workflow. All attributes are synthetic."
+  }
+]

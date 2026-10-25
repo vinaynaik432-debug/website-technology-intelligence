@@ -1,0 +1,299 @@
+[
+  {
+    "url": "https://acme.example.com",
+    "domain": "acme.example.com",
+    "status": "ok",
+    "technology": "HubSpot",
+    "categories": [
+      "CRM"
+    ],
+    "confidence": 100,
+    "foundIn": "website",
+    "detectedBy": [
+      "scriptSrc"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://acme.example.com",
+    "domain": "acme.example.com",
+    "status": "ok",
+    "technology": "Figma",
+    "categories": [
+      "Design"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://acme.example.com",
+    "domain": "acme.example.com",
+    "status": "ok",
+    "technology": "Google Analytics",
+    "categories": [
+      "Analytics"
+    ],
+    "confidence": 100,
+    "foundIn": "website",
+    "detectedBy": [
+      "scriptSrc"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://acme.example.com",
+    "domain": "acme.example.com",
+    "status": "ok",
+    "technology": "Slack",
+    "categories": [
+      "Collaboration"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://north.example.com",
+    "domain": "north.example.com",
+    "status": "ok",
+    "technology": "HubSpot",
+    "categories": [
+      "CRM"
+    ],
+    "confidence": 100,
+    "foundIn": "website",
+    "detectedBy": [
+      "scriptSrc"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://north.example.com",
+    "domain": "north.example.com",
+    "status": "ok",
+    "technology": "Shopify",
+    "categories": [
+      "Ecommerce"
+    ],
+    "confidence": 100,
+    "foundIn": "website",
+    "detectedBy": [
+      "scriptSrc"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://vista.example.com",
+    "domain": "vista.example.com",
+    "status": "ok",
+    "technology": "Figma",
+    "categories": [
+      "Design"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://vista.example.com",
+    "domain": "vista.example.com",
+    "status": "ok",
+    "technology": "WordPress",
+    "categories": [
+      "CMS"
+    ],
+    "confidence": 100,
+    "foundIn": "website",
+    "detectedBy": [
+      "scriptSrc"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://rivet.example.com",
+    "domain": "rivet.example.com",
+    "status": "ok",
+    "technology": "HubSpot",
+    "categories": [
+      "CRM"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://rivet.example.com",
+    "domain": "rivet.example.com",
+    "status": "ok",
+    "technology": "Figma",
+    "categories": [
+      "Design"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://rivet.example.com",
+    "domain": "rivet.example.com",
+    "status": "ok",
+    "technology": "Anthropic",
+    "categories": [
+      "Artificial Intelligence"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://meadow.example.com",
+    "domain": "meadow.example.com",
+    "status": "ok",
+    "technology": "HubSpot",
+    "categories": [
+      "CRM"
+    ],
+    "confidence": 100,
+    "foundIn": "website",
+    "detectedBy": [
+      "scriptSrc"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://meadow.example.com",
+    "domain": "meadow.example.com",
+    "status": "ok",
+    "technology": "Figma",
+    "categories": [
+      "Design"
+    ],
+    "confidence": 25,
+    "foundIn": "website",
+    "detectedBy": [
+      "scriptSrc"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://orbit.example.com",
+    "domain": "orbit.example.com",
+    "status": "ok",
+    "technology": "Notion",
+    "categories": [
+      "Productivity"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://orbit.example.com",
+    "domain": "orbit.example.com",
+    "status": "ok",
+    "technology": "Slack",
+    "categories": [
+      "Collaboration"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://cobalt.example.com",
+    "domain": "cobalt.example.com",
+    "status": "ok",
+    "technology": "Salesforce",
+    "categories": [
+      "CRM"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://cobalt.example.com",
+    "domain": "cobalt.example.com",
+    "status": "ok",
+    "technology": "Microsoft 365",
+    "categories": [
+      "Email"
+    ],
+    "confidence": 100,
+    "foundIn": "dns",
+    "detectedBy": [
+      "dns:TXT"
+    ],
+    "checkedAt": "2026-10-25T12:00:00Z",
+    "provider": "Fictional demonstration fixture",
+    "evidence": "Synthetic observation for interface demonstration; no real scan occurred."
+  },
+  {
+    "url": "https://harbour.example.com",
+    "domain": "harbour.example.com",
+    "status": "error",
+    "httpStatus": 429,
+    "error": "Fictional HTTP 429 example. A rate-limited website scan remains Unknown.",
+    "checkedAt": "2026-10-25T12:00:00Z"
+  }
+]

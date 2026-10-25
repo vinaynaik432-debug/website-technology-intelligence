@@ -1,0 +1,2 @@
+# Used only for portable Excel export when the optional Artifact Tool runtime is absent.
+openpyxl>=3.1,<4
