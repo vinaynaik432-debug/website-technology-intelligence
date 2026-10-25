@@ -11,9 +11,9 @@ ws.tabColor = '#183B49';
 function col(n) { let s = ''; for (n++; n; n = Math.floor((n-1)/26)) s = String.fromCharCode(65+(n-1)%26)+s; return s; }
 function safe(v) {
   if (typeof v !== 'string') return v;
-  v = v.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g, '');
-  if (/^[=+\-@\t\r]/.test(v)) v = "'"+v;
-  return v.length > 16000 ? v.slice(0,15900)+' [See full source JSON columns]' : v;
+  v = v.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\uFFFE\uFFFF]/g, '');
+  if (/^\s*[=+\-@]|^[\t\r\n]/.test(v)) v = "'"+v;
+  return v.length > 16000 ? v.slice(0,15900).replace(/[\uD800-\uDBFF]$/,'')+' [See full source JSON columns]' : v;
 }
 const rows = data.rows.map(row => row.map((v,i) => {
   if (data.headers[i].includes('checked (UTC)') && typeof v === 'string' && /^\d{4}-\d\d-\d\dT/.test(v)) return new Date(v);
@@ -45,8 +45,8 @@ if(rows.length && data.state_count) {
   const grid=ws.getRange(`${col(data.metadata_count)}8:${col(data.metadata_count+data.state_count-1)}${lastRow}`);
   grid.dataValidation={rule:{type:'list',values:['Detected','Not detected','Unknown']}};
   grid.format.horizontalAlignment='center';
-  grid.conditionalFormats.add('containsText',{text:'Detected',format:{fill:'#E2F1EA',font:{color:'#18533D'}}});
-  grid.conditionalFormats.add('containsText',{text:'Unknown',format:{fill:'#FFF1D6',font:{color:'#77551D'}}});
+  grid.conditionalFormats.add('cellIs',{operator:'equal',formula:'"Detected"',format:{fill:'#E2F1EA',font:{color:'#18533D'}}});
+  grid.conditionalFormats.add('cellIs',{operator:'equal',formula:'"Unknown"',format:{fill:'#FFF1D6',font:{color:'#77551D'}}});
 }
 ws.freezePanes.freezeRows(7);
 ws.freezePanes.freezeColumns(2);

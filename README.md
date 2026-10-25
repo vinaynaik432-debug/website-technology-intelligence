@@ -8,7 +8,11 @@ StackSignal combines public technology observations with company profiles, lets 
 
 ![StackSignal with sample data and visitor-owned research choices](docs/assets/dashboard.png)
 
-> Choose **Explore the test-run sample** for a cleaned snapshot of HelloFresh, N26 and Personio from 25 October 2026, or **Test with my own Apify token** to research up to five domains in the browser. Samples require no key or credits. Live research starts only when you explicitly submit it and uses your own Apify account. An eight-company fictional walkthrough is also available.
+> Choose **Explore the test-run sample** for a cleaned snapshot of **10 real companies** from 25 October 2026, or **Test with my own Apify token** to research up to five domains in the browser. Samples require no key or credits. Live research starts only when you explicitly submit it and uses your own Apify account. An eight-company fictional walkthrough is also available.
+
+The real-company sample includes **HelloFresh, N26, Personio, Klarna, Revolut, Wise, Doctolib, Back Market, Qonto and Spendesk**. It combines saved test batches, preserving each company's collection dates and sources. Blocked or incomplete scans stay marked Unknown or Partial; inclusion does not mean every company has complete coverage.
+
+The seven-company technology batch reached its five-minute limit. Its returned observations are retained with **Partial** status, so missing tools are not treated as absent. Apify returned four company profiles in that batch. The other three were manually supplemented from the company-published profiles for [Wise](https://www.linkedin.com/company/wiseaccount/), [Doctolib](https://www.linkedin.com/company/doctolib) and [Back Market](https://www.linkedin.com/company/back-market); Doctolib's founding year comes from its [official impact report](https://media.doctolib.com/image/upload/mkg/file/impact_report_en_digital.pdf). These manual additions are labelled in the company details and exports. They are sample curation, not an automatic enrichment feature.
 
 ## The GTM problem
 
@@ -41,7 +45,7 @@ For example, someone exploring an integration between a CRM and a design workflo
 
 The token is held only in memory, cleared from the input when research starts, and released by the client when the attempt ends. It is sent directly to `api.apify.com` in the Authorization header, never placed in a URL, browser storage, exported data or a project server. Use a dedicated, short-lived token with the required Actor/run/dataset permissions. See [Apify’s token instructions](https://docs.apify.com/integrations/api). As with any browser application, the page's own code and browser environment must be trusted; this is not a credential vault.
 
-Do not refresh or close the tab while a scan is being monitored. Started cloud runs can continue and incur charges even if the tab closes. The Actors receive a five-minute timeout and a per-Actor cap; the two caps together do not exceed the selected total. After an ambiguous start failure, inspect your Apify account before starting again.
+Do not refresh or close the tab while a scan is being monitored. Started cloud runs can continue and incur charges even if the tab closes. Technology scans receive a batch-size timeout: 75 seconds per domain plus a one-minute margin, with a five-minute minimum. For five browser domains this is 7 minutes 15 seconds. Company enrichment keeps a five-minute timeout; monitoring allows a further two-minute margin and stops with the run links preserved. Both Actors receive a per-Actor spending cap; together these do not exceed the selected total. After an ambiguous start failure, inspect your Apify account before starting again.
 
 ## Features
 
@@ -247,11 +251,11 @@ python3 -m unittest discover -s tests -v
 node tests/test_browser_client.js  # optional Node checks for the browser integration
 ```
 
-The release includes **25 Python tests and 9 browser-client checks** covering input normalization, ambiguous/missing data, tri-state evidence, AND/OR filtering, scope and confidence, browser/Python parity, Excel safety, public-demo isolation, budget reservations, non-retried run starts, cooldowns, DNS redaction and retry preservation. Browser-client checks use a mocked transport to verify capped starts, header-only credentials, pricing checks, non-retried ambiguous POSTs, missing-cap aborts, complete source export and absence of browser persistence.
+The release includes **30 Python tests and 12 browser-client checks** covering input normalization, ambiguous/missing data, tri-state evidence, AND/OR filtering, scope and confidence, browser/Python parity, Excel safety, public-demo isolation, budget reservations, non-retried run starts, cooldowns, DNS redaction and retry preservation. Regression checks also cover stalled response bodies, batch-size timeouts, bounded monitoring, malformed spending-cap acknowledgments, Excel cell limits and lossless Unicode source export, including raw chunks that begin with formula-like text. The Excel integration check needs the listed Python dependencies. Browser-client checks use a mocked transport to verify capped starts, header-only credentials, pricing checks, non-retried ambiguous POSTs, missing-cap aborts, complete source export and absence of browser persistence.
 
 Node-dependent checks are skipped when Node is unavailable; Python application tests still run. Browser checks also verified the two-company AND result, five-company OR result and filtered Excel download. The downloaded workbook was reopened to verify both companies, both tool signals, frozen headers and filters.
 
-These checks validate application behavior. They do not independently validate every third-party company fact or technology observation. The original live pilot covered three domains. Browser CORS/preflight access was verified without a paid run; the browser collector’s paid-run lifecycle is covered by mocked integration checks, not a new chargeable end-to-end scan. Large-batch performance has not been benchmarked.
+These checks validate application behavior. They do not independently validate every third-party company fact or technology observation. Live collection covered ten domains across the original three-company pilot and a seven-company expansion. Browser CORS/preflight access was verified without a paid run; the browser collector’s paid-run lifecycle is covered by mocked integration checks, not a new chargeable end-to-end scan. Large-batch performance has not been benchmarked.
 
 ### Rebuild the Pages demo
 

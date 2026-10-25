@@ -145,6 +145,11 @@ def inputs(domains, render_js=True):
     }
 
 
+def run_timeout(kind, domain_count):
+    # Websites are processed serially, with a 60-second per-site timeout.
+    return max(300, domain_count * 75 + 60) if kind == "technology" else 300
+
+
 def collect(token, domains, directory, budget_path, allowance=1.0, render_js=True, progress=lambda _: None, retry_source=None):
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=False)
@@ -180,16 +185,20 @@ def collect(token, domains, directory, budget_path, allowance=1.0, render_js=Tru
             save_json(directory / "manifest.json", manifest)
             progress(f"Starting {kind} research…")
             run = api.request("/acts/" + cfg["id"] + "/runs", method="POST", body=payloads[kind],
-                              query={"build": cfg["build"], "timeout": 300, "memory": 1024,
+                              query={"build": cfg["build"], "timeout": run_timeout(kind, len(domains)), "memory": 1024,
                                      "maxTotalChargeUsd": per_actor, "restartOnError": "false"})["data"]
             entry.update({"id": run["id"], "status": run["status"], "url": "https://console.apify.com/actors/runs/" + run["id"]})
             entry.update({k: run[k] for k in ("defaultDatasetId", "defaultKeyValueStoreId", "usageTotalUsd", "chargedEventCounts", "pricingInfo", "finishedAt") if k in run})
             save_json(directory / "manifest.json", manifest)
             effective = run.get("options", {}).get("maxTotalChargeUsd")
-            if effective is None or effective > per_actor + 1e-8:
+            if (not isinstance(effective, (int, float)) or isinstance(effective, bool)
+                    or not math.isfinite(effective) or effective < 0 or effective > per_actor + 1e-8):
                 api.request("/actor-runs/" + run["id"] + "/abort", method="POST")
                 raise RuntimeError("Apify did not acknowledge the spending cap; the run was asked to stop.")
+        deadline = time.monotonic() + max(run_timeout(kind, len(domains)) for kind in active_actors) + 120
         while any(e["status"] not in TERMINAL for e in manifest["runs"].values()):
+            if time.monotonic() >= deadline:
+                raise RuntimeError("Monitoring timed out. Check the saved Apify run links before starting another scan.")
             for kind, entry in manifest["runs"].items():
                 if entry["status"] in TERMINAL:
                     continue

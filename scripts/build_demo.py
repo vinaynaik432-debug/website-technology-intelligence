@@ -1,4 +1,4 @@
-"""Build GitHub Pages exclusively from intentionally fictional fixtures and public assets."""
+"""Build GitHub Pages from fictional fixtures and the reviewed public snapshot."""
 import json
 import shutil
 import sys

@@ -31,6 +31,8 @@ def domain_name(value):
         pass
     else:
         raise ValueError("Use a public company domain, not an IP address.")
+    if all(re.fullmatch(r"(?:0x[0-9a-f]+|[0-9]+)", part) for part in host.split(".")):
+        raise ValueError("Use a public company domain, not an alternative IP address spelling.")
     if len(host) > 253 or "." not in host or host.endswith((".local", ".localhost", ".internal", ".test", ".invalid")):
         raise ValueError("Use a public company domain.")
     if not all(re.fullmatch(r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?", label) for label in host.split(".")):
@@ -247,12 +249,25 @@ def matrix(report, companies=None, scope="all", confidence=50, raw=False):
     if raw:
         # Preserve every provider field on the same company row, even beyond Excel's per-cell limit.
         for label, key in [("Full company source JSON", "raw_company"), ("Full technology source JSON", "raw_technology")]:
-            values = [json.dumps(c[key], ensure_ascii=False, separators=(",", ":")) for c in companies]
-            count = max([1] + [(len(v) + 11999) // 12000 for v in values])
+            values = [source_chunks(json.dumps(c[key], ensure_ascii=False, separators=(",", ":"))) for c in companies]
+            count = max([1] + [len(v) for v in values])
             for chunk in range(count):
                 headers.append(f"{label} {chunk + 1}")
                 for row, value in zip(rows, values):
-                    row.append(value[chunk * 12000:(chunk + 1) * 12000])
+                    row.append(value[chunk] if chunk < len(value) else "")
     return {"headers": headers, "rows": rows, "metadata_count": metadata_count,
             "state_count": len(categories) + len(all_tools), "created_at": report["created_at"],
             "mode": report["mode"], "scope": scope, "confidence": confidence}
+
+
+def source_chunks(value):
+    # Excel and the JS writer count UTF-16 units. Never cut a Unicode character.
+    value = value.replace("\ufffe", "\\ufffe").replace("\uffff", "\\uffff")
+    chunks, current, width = [], [], 0
+    for char in value:
+        units = 2 if ord(char) > 0xFFFF else 1
+        if width + units > 12000:
+            chunks.append("".join(current)); current, width = [], 0
+        current.append(char); width += units
+    chunks.append("".join(current))
+    return chunks

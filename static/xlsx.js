@@ -1,7 +1,8 @@
 /* Minimal dependency-free OOXML writer for the public demo. Values are literal strings/numbers, never formulas. */
 (function(root){
  const encode=s=>new TextEncoder().encode(s);
- const xml=s=>String(s??'').replace(/[\x00-\x08\x0b\x0c\x0e-\x1f]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+ const cellText=v=>{let s=String(v??'').replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\uFFFE\uFFFF]/g,'');if(s.length>16000)s=s.slice(0,15900).replace(/[\uD800-\uDBFF]$/,'')+' [See full source JSON columns]';return s;};
+ const xml=s=>cellText(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
  const col=n=>{let s='';for(n++;n;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s;};
  function crc32(bytes){let crc=0xffffffff;for(const b of bytes){crc^=b;for(let j=0;j<8;j++)crc=(crc>>>1)^((crc&1)?0xedb88320:0);}return (crc^0xffffffff)>>>0;}
  function zip(files){

@@ -1,8 +1,8 @@
 {
   "id": "test-sample",
   "mode": "public-snapshot",
-  "created_at": "2026-10-25T16:47:13.325271+00:00",
-  "sample_note": "Sanitized public company and technology observations from the 25 October 2026 test run. Not rescanned on page load; detections do not prove active use. Private run identifiers, billing and raw provider records are omitted.",
+  "created_at": "2026-10-25T18:52:14.016489+00:00",
+  "sample_note": "Sanitized public company and technology observations from test runs on 25 October 2026. Not rescanned on page load; detections do not prove active use. Private run identifiers, billing and raw provider records are omitted. Each company retains its original collection dates. Wise, Doctolib and Back Market profiles were manually supplemented from company-published sources, identified in each profile.",
   "companies": [
     {
       "domain": "hellofresh.com",
@@ -1210,6 +1210,3000 @@
       },
       "technologies": [],
       "scan_status": "Unknown"
+    },
+    {
+      "domain": "klarna.com",
+      "facts": {
+        "Company": "Klarna",
+        "Domain": "klarna.com",
+        "Industry": "Software Development",
+        "Founded year": 2005,
+        "Founders": "Unknown",
+        "Employee size band": "1,001-5,000 employees",
+        "Employees on LinkedIn": 4488,
+        "HQ city": "Stockholm",
+        "HQ country": "Sweden",
+        "Office countries (reported)": "Sweden",
+        "Company profile source": "https://www.linkedin.com/company/klarna",
+        "Company match": "Matched by provider",
+        "Company data checked (UTC)": "2026-10-25T18:52:21Z",
+        "Website scan": "Partial",
+        "Website checked (UTC)": "2026-10-25T18:52:36.143Z",
+        "Scan notes": "The technology batch reached its time limit. Returned observations are retained, but scan coverage is incomplete.",
+        "Headquarters": "Stockholm; Sweden"
+      },
+      "technologies": [
+        {
+          "name": "Google AdSense",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Google Publisher Tag",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "FullStory",
+          "categories": [
+            "Analytics"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:FS.clearUserCookie",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Amazon CloudFront",
+          "categories": [
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:via",
+            "headers:x-amz-cf-id"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Amazon S3",
+          "categories": [
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:content-security-policy"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Contentful",
+          "categories": [
+            "CMS"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "html",
+            "scripts"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Funding Choices",
+          "categories": [
+            "Cookie compliance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:.fc-consent-root, iframe[name='googlefcLoaded'], iframe[n...",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "OneTrust",
+          "categories": [
+            "Cookie compliance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "cookies:optanonconsent",
+            "dns:TXT",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Emotion",
+          "categories": [
+            "Development",
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:style[data-emotion], style[data-emotion-css]"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "React",
+          "categories": [
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [],
+          "implied_by": [
+            "React Router"
+          ],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "React Router",
+          "categories": [
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "8",
+          "detected_by": [
+            "js:__reactRouterVersion"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "core-js",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "3.50.0",
+          "detected_by": [
+            "js:__core-js_shared__",
+            "js:__core-js_shared__.versions.0.version"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Framer Motion",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:MotionIsMounted"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Loadable-Components",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:script#__LOADABLE_REQUIRED_CHUNKS__",
+            "js:__LOADABLE_LOADED_CHUNKS__"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "HTTP/3",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:alt-svc"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Open Graph",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:meta[property*='og:']"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "PWA",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:link[rel='manifest']"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Amazon Web Services",
+          "categories": [
+            "PaaS"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [],
+          "implied_by": [
+            "Amazon CloudFront",
+            "Amazon S3",
+            "Amazon SES"
+          ],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Klarna Checkout",
+          "categories": [
+            "Payment processors",
+            "Buy now pay later"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:content-security-policy"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Priority Hints",
+          "categories": [
+            "Performance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:iframe[fetchpriority], img[fetchpriority], script[fetchpr..."
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Envoy",
+          "categories": [
+            "Reverse proxies"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:server",
+            "headers:x-envoy-upstream-service-time"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "HSTS",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:strict-transport-security"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Google Tag Manager",
+          "categories": [
+            "Tag managers"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:google_tag_data",
+            "js:google_tag_manager",
+            "js:googletag",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Mixpanel",
+          "categories": [
+            "Analytics"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Anthropic",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Cursor",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "ElevenLabs",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "OpenAI",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Docker",
+          "categories": [
+            "Containers"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Atlassian Cloud",
+          "categories": [
+            "Development"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Twilio",
+          "categories": [
+            "Development"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Amazon SES",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Sendgrid",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Loom",
+          "categories": [
+            "Livestreaming"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Adobe",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "DocuSign",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "IBM",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Meta",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Miro",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Stripe",
+          "categories": [
+            "Payment processors"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "HackerOne",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Jamf",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Palo Alto Networks",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Apple iCloud Mail",
+          "categories": [
+            "Webmail"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        },
+        {
+          "name": "Microsoft 365",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.klarna.com/us/",
+          "checked_at": "2026-10-25T18:52:36.143Z"
+        }
+      ],
+      "scan_status": "Partial"
+    },
+    {
+      "domain": "revolut.com",
+      "facts": {
+        "Company": "Revolut",
+        "Domain": "revolut.com",
+        "Industry": "Financial Services",
+        "Founded year": 2015,
+        "Founders": "Unknown",
+        "Employee size band": "10,001+ employees",
+        "Employees on LinkedIn": 20814,
+        "HQ city": "London",
+        "HQ country": "United Kingdom",
+        "Office countries (reported)": "United Kingdom",
+        "Company profile source": "https://www.linkedin.com/company/revolut",
+        "Company match": "Matched by provider",
+        "Company data checked (UTC)": "2026-10-25T18:52:21Z",
+        "Website scan": "Partial",
+        "Website checked (UTC)": "2026-10-25T18:52:47.926Z",
+        "Scan notes": "the site refused the request (HTTP 403, often bot protection) The technology batch reached its time limit. Returned observations are retained, but scan coverage is incomplete.",
+        "Headquarters": "London; United Kingdom"
+      },
+      "technologies": [
+        {
+          "name": "Anthropic",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://revolut.com",
+          "checked_at": "2026-10-25T18:57:20.243969+00:00"
+        },
+        {
+          "name": "Google Workspace",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:MX"
+          ],
+          "implied_by": [],
+          "url": "https://revolut.com",
+          "checked_at": "2026-10-25T18:57:20.243969+00:00"
+        }
+      ],
+      "scan_status": "Partial"
+    },
+    {
+      "domain": "wise.com",
+      "facts": {
+        "Company": "Wise",
+        "Domain": "wise.com",
+        "Industry": "Financial Services",
+        "Founded year": 2011,
+        "Founders": "Kristo Käärmann; Taavet Hinrikus",
+        "Employee size band": "5,001-10,000 employees",
+        "Employees on LinkedIn": 11852,
+        "HQ city": "London",
+        "HQ country": "United Kingdom",
+        "Office countries (reported)": "United Kingdom; United States; Hungary; Singapore; Estonia; Japan; Australia",
+        "Company profile source": "https://www.linkedin.com/company/wiseaccount/",
+        "Company match": "Manually sourced company profile",
+        "Company data checked (UTC)": "2026-10-25T18:59:41.571006+00:00",
+        "Website scan": "Partial",
+        "Website checked (UTC)": "2026-10-25T18:53:40.218Z",
+        "Scan notes": "Apify returned no company profile. Company details were added manually from the linked company-published profile; listed office locations may be incomplete. The technology batch reached its time limit. Returned observations are retained, but scan coverage is incomplete.",
+        "Headquarters": "London; United Kingdom"
+      },
+      "technologies": [
+        {
+          "name": "Adalyser",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:adalyserModules"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Innovid Advertising Measurement",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:TV2Track",
+            "js:_tvq"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Linkedin Ads",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:content-security-policy"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Microsoft Advertising",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "cookies:_uetsid",
+            "cookies:_uetvid",
+            "js:UET",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Reddit Ads",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "theTradeDesk",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:TTDUniversalPixelApi",
+            "js:ttd_dom_ready",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "TVSquared",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:TV2Track",
+            "js:_tvq"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Yahoo Advertising",
+          "categories": [
+            "Advertising",
+            "Retargeting"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:yahoo_retargeting_pv_id"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Google Analytics",
+          "categories": [
+            "Analytics"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "cookies:_ga",
+            "js:gaGlobal",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Linkedin Insight Tag",
+          "categories": [
+            "Analytics"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:content-security-policy"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Mixpanel",
+          "categories": [
+            "Analytics"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dns:TXT",
+            "js:mixpanel"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Amazon S3",
+          "categories": [
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:content-security-policy"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Cloudflare",
+          "categories": [
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dns:NS",
+            "dns:SOA",
+            "headers:cf-cache-status",
+            "headers:cf-ray",
+            "headers:server"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "GSAP",
+          "categories": [
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:gsapVersions"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "React",
+          "categories": [
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [],
+          "implied_by": [
+            "Next.js"
+          ],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Framer Motion",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:MotionIsMounted"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "HTTP/3",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:alt-svc"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Open Graph",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:meta[property*='og:']"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Webpack",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [],
+          "implied_by": [
+            "Next.js"
+          ],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Amazon Web Services",
+          "categories": [
+            "PaaS"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [],
+          "implied_by": [
+            "Amazon S3",
+            "Amazon SES"
+          ],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Cloudflare Bot Management",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "cookies:__cf_bm"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "HSTS",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:strict-transport-security"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Next.js",
+          "categories": [
+            "Static site generator",
+            "Web frameworks",
+            "JavaScript frameworks",
+            "Web servers"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "16.3.8",
+          "detected_by": [
+            "js:__NEXT_DATA__",
+            "js:next.version"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Google Tag Manager",
+          "categories": [
+            "Tag managers"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:google_tag_data",
+            "js:google_tag_manager",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "OpenAI",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "OneTrust",
+          "categories": [
+            "Cookie compliance"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "MongoDB Atlas",
+          "categories": [
+            "Databases"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Atlassian Cloud",
+          "categories": [
+            "Development"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Postman",
+          "categories": [
+            "Development"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Amazon SES",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Cloudflare DNS",
+          "categories": [
+            "Hosting"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:NS",
+            "dns:SOA"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "HubSpot",
+          "categories": [
+            "Marketing automation"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Adobe",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "DocuSign",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Meta",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Miro",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Slack",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Uber",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Zoom",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Canva",
+          "categories": [
+            "Page builders"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Apple iCloud Mail",
+          "categories": [
+            "Webmail"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Google Workspace",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:MX"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Microsoft 365",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        },
+        {
+          "name": "Airtable",
+          "categories": [
+            "Widgets"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://wise.com/",
+          "checked_at": "2026-10-25T18:53:40.218Z"
+        }
+      ],
+      "scan_status": "Partial"
+    },
+    {
+      "domain": "doctolib.fr",
+      "facts": {
+        "Company": "Doctolib",
+        "Domain": "doctolib.fr",
+        "Industry": "Software Development",
+        "Founded year": 2013,
+        "Founders": "Unknown",
+        "Employee size band": "1,001-5,000 employees",
+        "Employees on LinkedIn": 3725,
+        "HQ city": "Levallois-Perret",
+        "HQ country": "France",
+        "Office countries (reported)": "France; Germany; Italy",
+        "Company profile source": "https://www.linkedin.com/company/doctolib",
+        "Company match": "Manually sourced company profile",
+        "Company data checked (UTC)": "2026-10-25T18:59:41.571006+00:00",
+        "Website scan": "Partial",
+        "Website checked (UTC)": "2026-10-25T18:54:12.123Z",
+        "Scan notes": "Apify returned no company profile. Company details were added manually from the linked company-published profile; listed office locations may be incomplete. Founded year source: https://media.doctolib.com/image/upload/mkg/file/impact_report_en_digital.pdf (2024 report). The technology batch reached its time limit. Returned observations are retained, but scan coverage is incomplete.",
+        "Headquarters": "Levallois-Perret; France"
+      },
+      "technologies": [
+        {
+          "name": "Onfido",
+          "categories": [
+            "Authentication",
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:content-security-policy"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Amazon S3",
+          "categories": [
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:content-security-policy"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Cloudflare",
+          "categories": [
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dns:NS",
+            "dns:SOA",
+            "headers:cf-cache-status",
+            "headers:cf-ray",
+            "headers:server"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Didomi",
+          "categories": [
+            "Cookie compliance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Sentry",
+          "categories": [
+            "Issue trackers"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:__SENTRY__"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "React",
+          "categories": [
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "html"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "React Router",
+          "categories": [
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "6",
+          "detected_by": [
+            "js:__reactRouterVersion"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "core-js",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "3.50.0",
+          "detected_by": [
+            "js:__core-js_shared__",
+            "js:__core-js_shared__.versions.0.version"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Open Graph",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:meta[property*='og:']"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Amazon Web Services",
+          "categories": [
+            "PaaS"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [],
+          "implied_by": [
+            "Amazon S3"
+          ],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Ruby",
+          "categories": [
+            "Programming languages"
+          ],
+          "confidence": 50,
+          "location": "website",
+          "version": null,
+          "detected_by": [],
+          "implied_by": [
+            "Ruby on Rails"
+          ],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Datadog",
+          "categories": [
+            "RUM",
+            "Analytics"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:DD_RUM",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Cloudflare Bot Management",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "cookies:__cf_bm"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "HSTS",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:strict-transport-security"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Ruby on Rails",
+          "categories": [
+            "Web frameworks"
+          ],
+          "confidence": 50,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "meta:csrf-param"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Salesforce",
+          "categories": [
+            "CRM"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Atlassian Cloud",
+          "categories": [
+            "Development"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Cloudflare DNS",
+          "categories": [
+            "Hosting"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:NS",
+            "dns:SOA"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Sendinblue",
+          "categories": [
+            "Marketing automation",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Meta",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Google Workspace",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:MX"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        },
+        {
+          "name": "Microsoft 365",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.doctolib.fr/",
+          "checked_at": "2026-10-25T18:54:12.123Z"
+        }
+      ],
+      "scan_status": "Partial"
+    },
+    {
+      "domain": "backmarket.com",
+      "facts": {
+        "Company": "Back Market",
+        "Domain": "backmarket.com",
+        "Industry": "Internet Marketplace Platforms",
+        "Founded year": 2014,
+        "Founders": "Thibaud Hug de Larauze; Quentin Le Brouster; Vianney Vaute",
+        "Employee size band": "501-1,000 employees",
+        "Employees on LinkedIn": 1054,
+        "HQ city": "Paris",
+        "HQ country": "France",
+        "Office countries (reported)": "France; United States; Germany; Spain; United Kingdom; Japan; Hong Kong",
+        "Company profile source": "https://www.linkedin.com/company/back-market",
+        "Company match": "Manually sourced company profile",
+        "Company data checked (UTC)": "2026-10-25T18:59:41.571006+00:00",
+        "Website scan": "Partial",
+        "Website checked (UTC)": "2026-10-25T18:54:34.415Z",
+        "Scan notes": "Apify returned no company profile. Company details were added manually from the linked company-published profile; listed office locations may be incomplete. Website content changed during the scan, so the page could not be fully inspected. Only independent DNS observations are available. The technology batch reached its time limit. Returned observations are retained, but scan coverage is incomplete.",
+        "Headquarters": "Paris; France"
+      },
+      "technologies": [
+        {
+          "name": "Anthropic",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://backmarket.com",
+          "checked_at": "2026-10-25T18:57:20.538280+00:00"
+        },
+        {
+          "name": "Google Workspace",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:MX"
+          ],
+          "implied_by": [],
+          "url": "https://backmarket.com",
+          "checked_at": "2026-10-25T18:57:20.538280+00:00"
+        }
+      ],
+      "scan_status": "Partial"
+    },
+    {
+      "domain": "qonto.com",
+      "facts": {
+        "Company": "Qonto",
+        "Domain": "qonto.com",
+        "Industry": "Financial Services",
+        "Founded year": 2016,
+        "Founders": "Unknown",
+        "Employee size band": "1,001-5,000 employees",
+        "Employees on LinkedIn": 2494,
+        "HQ city": "Paris",
+        "HQ country": "France",
+        "Office countries (reported)": "France; Italy; Spain; Germany",
+        "Company profile source": "https://www.linkedin.com/company/qonto",
+        "Company match": "Matched by provider",
+        "Company data checked (UTC)": "2026-10-25T18:52:21Z",
+        "Website scan": "Partial",
+        "Website checked (UTC)": "2026-10-25T18:55:18.525Z",
+        "Scan notes": "The technology batch reached its time limit. Returned observations are retained, but scan coverage is incomplete.",
+        "Headquarters": "Paris; France"
+      },
+      "technologies": [
+        {
+          "name": "AB Tasty",
+          "categories": [
+            "A/B Testing"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:ABTasty",
+            "js:_abtasty",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Microsoft Advertising",
+          "categories": [
+            "Advertising"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:UET",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Google Analytics",
+          "categories": [
+            "Analytics"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:gaGlobal"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Amazon CloudFront",
+          "categories": [
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:via",
+            "headers:x-amz-cf-id"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "jsDelivr",
+          "categories": [
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:link[href*='cdn.jsdelivr.net']",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Didomi",
+          "categories": [
+            "Cookie compliance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Segment",
+          "categories": [
+            "Customer data platform"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "4.15.2",
+          "detected_by": [
+            "dns:TXT",
+            "js:analytics.SNIPPET_VERSION"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Sentry",
+          "categories": [
+            "Issue trackers"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:Sentry",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Stimulus",
+          "categories": [
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "html"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "lit-element",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "3.1.2",
+          "detected_by": [
+            "js:litElementVersions.0"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "lit-html",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "2.1.2",
+          "detected_by": [
+            "js:litHtmlVersions.0"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Swiper",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:div.swiper-initialized",
+            "dom:div.swiper-wrapper"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "LottieFiles",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:lottie-player, div[data-animation-type='lottie'], div[dat..."
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Open Graph",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:meta[property*='og:']"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "PWA",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:link[rel='manifest']"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Priority Hints",
+          "categories": [
+            "Performance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:iframe[fetchpriority], img[fetchpriority], script[fetchpr..."
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Turbo",
+          "categories": [
+            "Performance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:Turbo"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Ruby",
+          "categories": [
+            "Programming languages"
+          ],
+          "confidence": 50,
+          "location": "website",
+          "version": null,
+          "detected_by": [],
+          "implied_by": [
+            "Ruby on Rails"
+          ],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "HSTS",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:strict-transport-security"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Google Tag Manager",
+          "categories": [
+            "Tag managers"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:google_tag_data",
+            "js:google_tag_manager",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Ruby on Rails",
+          "categories": [
+            "Web frameworks"
+          ],
+          "confidence": 50,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "meta:csrf-param"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Anthropic",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Cursor",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "OpenAI",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Linear",
+          "categories": [
+            "CRM"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Salesforce",
+          "categories": [
+            "CRM"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "MongoDB Atlas",
+          "categories": [
+            "Databases"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Atlassian Cloud",
+          "categories": [
+            "Development"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Zendesk",
+          "categories": [
+            "Documentation",
+            "Issue trackers",
+            "Live chat"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Amazon SES",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Sendgrid",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Amazon Route 53",
+          "categories": [
+            "Hosting"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:NS",
+            "dns:SOA"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Meta",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Zoom",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Cisco",
+          "categories": [
+            "Network devices"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Amazon Web Services",
+          "categories": [
+            "PaaS"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:NS"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Notion",
+          "categories": [
+            "Page builders"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Stripe",
+          "categories": [
+            "Payment processors"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Jamf",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Apple iCloud Mail",
+          "categories": [
+            "Webmail"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Google Workspace",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:MX"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        },
+        {
+          "name": "Microsoft 365",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://qonto.com/en",
+          "checked_at": "2026-10-25T18:55:18.525Z"
+        }
+      ],
+      "scan_status": "Partial"
+    },
+    {
+      "domain": "spendesk.com",
+      "facts": {
+        "Company": "Spendesk",
+        "Domain": "spendesk.com",
+        "Industry": "Software Development",
+        "Founded year": 2016,
+        "Founders": "Unknown",
+        "Employee size band": "501-1,000 employees",
+        "Employees on LinkedIn": 356,
+        "HQ city": "Paris",
+        "HQ country": "France",
+        "Office countries (reported)": "France; Germany; United Kingdom; United States; Italy; Spain",
+        "Company profile source": "https://www.linkedin.com/company/spendesk",
+        "Company match": "Matched by provider",
+        "Company data checked (UTC)": "2026-10-25T18:52:21Z",
+        "Website scan": "Partial",
+        "Website checked (UTC)": "2026-10-25T18:55:56.528Z",
+        "Scan notes": "The technology batch reached its time limit. Returned observations are retained, but scan coverage is incomplete.",
+        "Headquarters": "Paris; France"
+      },
+      "technologies": [
+        {
+          "name": "Google Analytics",
+          "categories": [
+            "Analytics"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "js:gaGlobal",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Storyblok",
+          "categories": [
+            "CMS"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:img[src*='//a.storyblok.com/'], img[srcset*='a.storyblok....",
+            "headers:content-security-policy"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Usercentrics",
+          "categories": [
+            "Cookie compliance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Segment",
+          "categories": [
+            "Customer data platform"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": "5.2.1",
+          "detected_by": [
+            "js:analytics.SNIPPET_VERSION"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Vue.js",
+          "categories": [
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "html",
+            "js:__VUE__"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Pinia",
+          "categories": [
+            "JavaScript libraries"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:script",
+            "js:__NUXT__.pinia"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Open Graph",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:meta[property*='og:']"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "PWA",
+          "categories": [
+            "Miscellaneous"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:link[rel='manifest']"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Netlify",
+          "categories": [
+            "PaaS",
+            "CDN"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:server",
+            "headers:x-nf-request-id"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Priority Hints",
+          "categories": [
+            "Performance"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:iframe[fetchpriority], img[fetchpriority], script[fetchpr..."
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "HSTS",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "headers:strict-transport-security"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "reCAPTCHA",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:#recaptcha_image, iframe[src*='.google.com/recaptcha/'], ...",
+            "js:recaptcha",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Nuxt.js",
+          "categories": [
+            "Static site generator",
+            "Web frameworks",
+            "JavaScript frameworks"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "dom:div[id^='__nuxt']",
+            "html",
+            "js:__NUXT__",
+            "js:useNuxtApp",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Google Tag Manager",
+          "categories": [
+            "Tag managers"
+          ],
+          "confidence": 100,
+          "location": "website",
+          "version": null,
+          "detected_by": [
+            "html",
+            "js:google_tag_data",
+            "js:google_tag_manager",
+            "scriptSrc"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Anthropic",
+          "categories": [
+            "Artificial Intelligence"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Docker",
+          "categories": [
+            "Containers"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Mailjet",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Sendgrid",
+          "categories": [
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Amazon Route 53",
+          "categories": [
+            "Hosting"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:NS",
+            "dns:SOA"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "HubSpot",
+          "categories": [
+            "Marketing automation"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Amazon Web Services",
+          "categories": [
+            "PaaS"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:NS"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Jamf",
+          "categories": [
+            "Security"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Apple iCloud Mail",
+          "categories": [
+            "Webmail"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Google Workspace",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:MX"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        },
+        {
+          "name": "Microsoft 365",
+          "categories": [
+            "Webmail",
+            "Email"
+          ],
+          "confidence": 100,
+          "location": "dns",
+          "version": null,
+          "detected_by": [
+            "dns:TXT"
+          ],
+          "implied_by": [],
+          "url": "https://www.spendesk.com/",
+          "checked_at": "2026-10-25T18:55:56.528Z"
+        }
+      ],
+      "scan_status": "Partial"
     }
   ]
 }

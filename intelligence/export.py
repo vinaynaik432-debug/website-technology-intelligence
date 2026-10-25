@@ -7,17 +7,19 @@ import os
 import re
 import shutil
 import subprocess
+import zipfile
+import xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def safe_cell(value):
+def safe_cell(value, protect_formula=True):
     if not isinstance(value, str):
         return value
-    value = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", value)
-    if value.startswith(("=", "+", "-", "@", "\t", "\r")):
+    value = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ufffe\uffff]", "", value)
+    if protect_formula and (value.lstrip().startswith(("=", "+", "-", "@")) or value.startswith(("\t", "\r", "\n"))):
         value = "'" + value
     # Raw JSON is already split into smaller chunks, so the original remains complete.
     return value if len(value) <= 16000 else value[:15900] + " [See full source JSON columns]"
@@ -56,10 +58,54 @@ def write_excel(table, path, preview=False):
                               "preview" if preview else "export"], capture_output=True, text=True, timeout=120)
         if run.returncode:
             raise RuntimeError("Excel export failed. " + run.stderr[-800:])
+        _restore_source_cells(path, table)
     else:
         # Portable application fallback on machines without the optional Artifact runtime.
         _portable_excel(table, path)
     return path
+
+
+def _restore_source_cells(path, table):
+    """Keep source chunks literal: the Artifact writer otherwise treats '=' as a formula.
+
+    Its temporary apostrophe protection must not become part of the exported JSON.
+    Replace only raw-source cells with OOXML inline strings, preserving cell styles.
+    """
+    def column(index):
+        result = ""
+        while index:
+            index, digit = divmod(index - 1, 26)
+            result = chr(65 + digit) + result
+        return result
+    sources = [i for i, h in enumerate(table["headers"]) if h.startswith(("Full company source JSON", "Full technology source JSON"))]
+    values = {f"{column(i+1)}{r+8}": row[i] for r, row in enumerate(table["rows"]) for i in sources if row[i]}
+    if not values:
+        return
+    ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+    ET.register_namespace("x", ns)
+    pending = dict(values)
+    temporary = path.with_suffix(".xlsx.tmp")
+    with zipfile.ZipFile(path) as original, zipfile.ZipFile(temporary, "w") as revised:
+        for info in original.infolist():
+            data = original.read(info.filename)
+            if info.filename == "xl/worksheets/sheet1.xml":
+                sheet = ET.fromstring(data)
+                for cell in sheet.iter("{" + ns + "}c"):
+                    ref = cell.get("r")
+                    if ref not in values:
+                        continue
+                    for child in list(cell):
+                        cell.remove(child)
+                    cell.set("t", "inlineStr")
+                    text = ET.SubElement(ET.SubElement(cell, "{" + ns + "}is"), "{" + ns + "}t")
+                    text.set("{http://www.w3.org/XML/1998/namespace}space", "preserve")
+                    text.text = str(pending.pop(ref))
+                data = ET.tostring(sheet, encoding="utf-8", xml_declaration=True)
+            revised.writestr(info, data)
+    if pending:
+        temporary.unlink()
+        raise RuntimeError("Excel source cells were missing; export stopped to avoid losing raw data.")
+    temporary.replace(path)
 
 
 def _portable_excel(table, path):
@@ -83,7 +129,10 @@ def _portable_excel(table, path):
     ws["A5"] = f"Evidence scope: {table['scope']} · Minimum confidence: {table['confidence']} · Collected: {table['created_at']}"
     for r, values in enumerate([table["headers"], *table["rows"]], start=7):
         for c, value in enumerate(values, start=1):
-            cell = ws.cell(r, c, safe_cell(value))
+            source = table["headers"][c - 1].startswith(("Full company source JSON", "Full technology source JSON"))
+            cell = ws.cell(r, c, safe_cell(value, protect_formula=not source))
+            if isinstance(cell.value, str):
+                cell.data_type = "s"
             cell.font = Font(name="Arial", size=10, color="203846")
             cell.alignment = Alignment(vertical="center", wrap_text=True)
             if r == 7:

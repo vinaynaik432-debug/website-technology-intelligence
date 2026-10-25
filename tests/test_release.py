@@ -87,7 +87,7 @@ class PublicDemo(unittest.TestCase):
  def test_test_run_snapshot_has_no_private_source_records(self):
   sample=json.loads((ROOT/'examples/public-test/report.json').read_text())
   self.assertEqual(sample['mode'],'public-snapshot')
-  self.assertEqual([c['domain'] for c in sample['companies']],['hellofresh.com','n26.com','personio.com'])
+  self.assertEqual([c['domain'] for c in sample['companies']],['hellofresh.com','n26.com','personio.com','klarna.com','revolut.com','wise.com','doctolib.fr','backmarket.com','qonto.com','spendesk.com'])
   self.assertEqual(sample['companies'][2]['scan_status'],'Unknown')
   for key in ['raw_company','raw_technology','manifest','defaultDatasetId','usageTotalUsd','cap_usd']:
    self.assertNotIn('"'+key+'"',json.dumps(sample))
@@ -108,5 +108,22 @@ class PublicDemo(unittest.TestCase):
    for name in z.namelist():ET.fromstring(z.read(name))
    sheet=z.read('xl/worksheets/sheet1.xml').decode()
    self.assertNotIn('<f>',sheet);self.assertIn('=CMD()',sheet);self.assertIn('autoFilter',sheet)
+
+ @unittest.skipUnless(shutil.which('node'),'Node needed for browser Excel test')
+ def test_browser_excel_cell_limits_and_unicode_source_roundtrip(self):
+  import io,zipfile,xml.etree.ElementTree as ET
+  long_text='x'*11989+'😀'*20000+'\uffff'
+  payload={'input':'example.com','name':'Example','description':long_text}
+  js="const c=require('./static/browser-apify.js'),e=require('./static/engine.js'),w=require('./static/xlsx.js');let x='';process.stdin.on('data',d=>x+=d);process.stdin.on('end',()=>{const r=c.normalize(['example.com'],[],[JSON.parse(x)]);process.stdout.write(Buffer.from(w(e.table(r,r.companies,{},true))));});"
+  blob=subprocess.check_output(['node','-e',js],cwd=ROOT,input=json.dumps(payload).encode())
+  with zipfile.ZipFile(io.BytesIO(blob)) as z:
+   root=ET.fromstring(z.read('xl/worksheets/sheet1.xml'))
+   ns={'s':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
+   rows=root.findall('s:sheetData/s:row',ns)
+   values=lambda row:[''.join(c.itertext()) for c in row]
+   headers,body=values(rows[4]),values(rows[5])
+   self.assertTrue(all(len(value.encode('utf-16-le'))//2<=32767 for value in body))
+   raw=''.join(body[i] for i,h in enumerate(headers) if h.startswith('Full company source JSON'))
+   self.assertEqual(json.loads(raw),[payload])
 
 if __name__=='__main__':unittest.main()

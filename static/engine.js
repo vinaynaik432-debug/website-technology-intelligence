@@ -1,6 +1,11 @@
 /* Shared browser engine. No network access, credentials, or storage. */
 (function(root){
   const labels={Yes:'Detected',No:'Not detected',Unknown:'Unknown'};
+  function sourceChunks(value) {
+    const chunks=[];
+    for(let start=0;start<value.length;){let end=Math.min(start+12000,value.length);if(end<value.length&&/[\uD800-\uDBFF]/.test(value[end-1])&&/[\uDC00-\uDFFF]/.test(value[end]))end--;chunks.push(value.slice(start,end));start=end;}
+    return chunks.length?chunks:[''];
+  }
   function state(company,{name=null,category=null,scope='all',confidence=50}={}) {
     const matches=company.technologies.filter(t=>(name===null||t.name===name)&&(category===null||t.categories.includes(category))&&(scope==='all'||t.location===scope));
     if(matches.some(t=>typeof t.confidence==='number'&&t.confidence>=confidence))return 'Yes';
@@ -25,7 +30,7 @@
     const facts=Object.keys(report.companies[0]?.facts||{});
     const headers=[...facts,'Evidence scope','Minimum detection confidence','Technology run source','Firmographics run source',...cats.map(x=>'Category | '+x),...tools.map(t=>'Tool | '+t.categories.join(', ')+' | '+t.name)];
     const rows=companies.map(c=>[...facts.map(k=>c.facts[k]),f.scope||'all',f.confidence??50,report.mode==='synthetic'?'Synthetic demonstration':report.manifest?.runs?.technology?.url||'Saved test snapshot (private run IDs omitted)',report.mode==='synthetic'?'Synthetic demonstration':report.manifest?.runs?.firmographics?.url||'Saved test snapshot (private run IDs omitted)',...cats.map(category=>labels[state(c,{...f,category})]),...tools.map(t=>labels[state(c,{...f,name:t.name})])]);
-    if(raw&&report.mode==='live'){for(const [label,key] of [['Full company source JSON','raw_company'],['Full technology source JSON','raw_technology']]){const values=companies.map(c=>JSON.stringify(c[key]||[])),count=Math.max(1,...values.map(v=>Math.ceil(v.length/12000)));for(let chunk=0;chunk<count;chunk++){headers.push(label+' '+(chunk+1));rows.forEach((r,i)=>r.push(values[i].slice(chunk*12000,(chunk+1)*12000)));}}}
+    if(raw&&report.mode==='live'){for(const [label,key] of [['Full company source JSON','raw_company'],['Full technology source JSON','raw_technology']]){const values=companies.map(c=>sourceChunks(JSON.stringify(c[key]||[]).replace(/\uFFFE/g,'\\ufffe').replace(/\uFFFF/g,'\\uffff'))),count=Math.max(1,...values.map(v=>v.length));for(let chunk=0;chunk<count;chunk++){headers.push(label+' '+(chunk+1));rows.forEach((r,i)=>r.push(values[i][chunk]||''));}}}
     return {headers,rows,metadata_count:facts.length+4,state_count:tools.length+cats.length,scope:f.scope||'all',confidence:f.confidence??50,created_at:report.created_at,mode:report.mode};
   }
   function brief(company,f={}) {

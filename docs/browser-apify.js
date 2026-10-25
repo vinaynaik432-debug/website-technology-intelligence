@@ -8,7 +8,7 @@
   const raw=String(value||'').trim();if(!raw||/\s/.test(raw))throw new Error('Enter a website domain, not a company name.');
   let url;try{url=new URL(raw.includes('://')?raw:'https://'+raw);}catch{throw new Error('Invalid company domain.');}
   let host=url.hostname.toLowerCase().replace(/\.$/,'').replace(/^www\./,'');
-  if(!['https:','http:'].includes(url.protocol)||url.username||url.password||url.port||!host.includes('.')||host.length>253||/^\d+(\.\d+){3}$/.test(host)||host.includes(':')||/\.(local|localhost|internal|test|invalid)$/.test(host)||!host.split('.').every(x=>/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(x)))throw new Error('Use ordinary public company domains, without passwords or custom ports.');
+  if(!['https:','http:'].includes(url.protocol)||url.username||url.password||(url.port&&!['80','443'].includes(url.port))||!host.includes('.')||host.length>253||/^\d+(\.\d+){3}$/.test(host)||host.includes(':')||/\.(local|localhost|internal|test|invalid)$/.test(host)||!host.split('.').every(x=>/^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/.test(x)))throw new Error('Use ordinary public company domains, without passwords or custom ports.');
   return host;
  }
  function maybeDomain(v){try{return domain(v);}catch{return null;}}
@@ -51,14 +51,14 @@
   if(!token||!String(token).trim())throw new Error('Enter your Apify API token.');token=String(token).trim();
   domains=parseDomains(domains.join('\n'));allowance=Number(allowance);
   if(!Number.isFinite(allowance)||allowance<.1||allowance>5)throw new Error('Choose a total maximum charge between $0.10 and $5.');
-  const cap=Math.floor(allowance/2*1e6)/1e6,runs={},createdAt=new Date().toISOString();
+  const cap=Math.floor(allowance/2*1e6)/1e6,runs={},createdAt=new Date().toISOString(),technologyTimeout=Math.max(300,domains.length*75+60);
   const safeId=x=>{if(!/^[A-Za-z0-9_-]{1,80}$/.test(String(x)))throw new Error('Apify returned an invalid resource identifier.');return x;};
   async function request(path,{method='GET',body}={}){
    if(!/^\/(actors|actor-runs|datasets)\//.test(path)||path.includes('..'))throw new Error('Invalid API request.');
    const tries=method==='GET'?3:1;
    for(let attempt=0;attempt<tries;attempt++){
-    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),30000);let response;
-    try{response=await fetchImpl(BASE+path,{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',Accept:'application/json'},body:body===undefined?undefined:JSON.stringify(body),credentials:'omit',cache:'no-store',redirect:'error',referrerPolicy:'no-referrer',signal:controller.signal});}
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),30000);let response,payload;
+    try{response=await fetchImpl(BASE+path,{method,headers:{Authorization:'Bearer '+token,'Content-Type':'application/json',Accept:'application/json'},body:body===undefined?undefined:JSON.stringify(body),credentials:'omit',cache:'no-store',redirect:'error',referrerPolicy:'no-referrer',signal:controller.signal});if(response.ok)payload=await response.json();}
     catch{throw new Error(method==='POST'?'The start/stop request could not be confirmed. It was not retried. Check your Apify runs before starting again.':'Could not reach Apify. Check your connection and any runs already started.');}
     finally{clearTimeout(timer);}
     if(!response.ok){
@@ -67,21 +67,22 @@
      if(response.status===402)throw new Error('Your Apify account needs available credits to run this research.');
      throw new Error(`Apify returned HTTP ${response.status}. Check your account and any runs already started.`);
     }
-    try{return await response.json();}catch{throw new Error('Apify returned an unreadable response. Check your runs before retrying.');}
+    return payload;
    }
   }
   try{
    onProgress('Checking Actor pricing and account access…');
    for(const actor of ACTORS){const meta=(await request('/actors/'+actor.id)).data;const prices=(meta?.pricingInfos||[]).filter(p=>(p.startedAt||'')<=createdAt).sort((a,b)=>(a.startedAt||'').localeCompare(b.startedAt||''));const price=prices.at(-1);if(price?.pricingModel!=='PAY_PER_EVENT'||(price.minimalMaxTotalChargeUsd||0)>cap)throw new Error('Actor pricing is unavailable, changed, or exceeds this cap. No runs were started.');}
    const inputs={technology:{urls:domains.map(d=>'https://'+d),renderJs,checkDns:true,outputFormat:'technologies',categories:[],minConfidence:0,monitorChanges:false,maxConcurrency:1,timeoutSecs:60},firmographics:{companies:domains,includeFunding:true,includeContacts:false,includeRecentJobs:false,maxPostsPerCompany:0,maxCompanies:domains.length}};
-   for(const actor of ACTORS){onProgress('Starting '+actor.kind+' research…');const q=new URLSearchParams({build:actor.build,timeout:'300',memory:'1024',maxTotalChargeUsd:String(cap),restartOnError:'false'});const run=(await request('/actors/'+actor.id+'/runs?'+q,{method:'POST',body:inputs[actor.kind]})).data;
+   for(const actor of ACTORS){onProgress('Starting '+actor.kind+' research…');const q=new URLSearchParams({build:actor.build,timeout:String(actor.kind==='technology'?technologyTimeout:300),memory:'1024',maxTotalChargeUsd:String(cap),restartOnError:'false'});const run=(await request('/actors/'+actor.id+'/runs?'+q,{method:'POST',body:inputs[actor.kind]})).data;
     if(!run?.id)throw new Error('A run start was not confirmed. Check your Apify account before another attempt.');
     safeId(run.id);runs[actor.kind]={id:run.id,actor:actor.id,build:actor.build,status:run.status,defaultDatasetId:run.defaultDatasetId,cap_usd:cap,url:'https://console.apify.com/actors/runs/'+run.id};onRuns({...runs});
     const accepted=run.options?.maxTotalChargeUsd;
-    if(typeof accepted!=='number'||!Number.isFinite(accepted)||accepted>cap+1e-8){try{await request('/actor-runs/'+run.id+'/abort',{method:'POST'});}catch{}throw new Error('Apify did not acknowledge the cap. A stop was requested; check the run in your account.');}
+    if(typeof accepted!=='number'||!Number.isFinite(accepted)||accepted<0||accepted>cap+1e-8){try{await request('/actor-runs/'+run.id+'/abort',{method:'POST'});}catch{}throw new Error('Apify did not acknowledge the cap. A stop was requested; check the run in your account.');}
    }
+   const deadline=Date.now()+(technologyTimeout+120)*1000;
    for(let attempt=0;Object.values(runs).some(r=>!terminal.has(r.status));attempt++){
-    if(attempt>=120)throw new Error('Monitoring timed out. Your run links are below; check Apify before scanning again.');
+    if(Date.now()>=deadline||attempt>=Math.ceil((technologyTimeout+120)/3))throw new Error('Monitoring timed out. Your run links are below; check Apify before scanning again.');
     for(const [kind,run] of Object.entries(runs)){if(terminal.has(run.status))continue;const result=(await request('/actor-runs/'+safeId(run.id))).data;if(!result?.status)throw new Error('Run status unavailable. Check your Apify account.');Object.assign(run,{status:result.status,defaultDatasetId:result.defaultDatasetId});onProgress(kind+': '+run.status.toLowerCase().replaceAll('-',' '));onRuns({...runs});}
     if(Object.values(runs).some(r=>!terminal.has(r.status)))await sleep(3000);
    }

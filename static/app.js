@@ -6,12 +6,14 @@ const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefine
 function toast(message){$('toast').textContent=message;$('toast').hidden=false;setTimeout(()=>$('toast').hidden=true,6500);}
 async function api(path,data){const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':csrf},body:JSON.stringify(data)});if(!r.ok){let e=await r.json();throw new Error(e.error||'Request failed');}return r;}
 function filters(){return {query:$('query').value,country:$('country').value,industry:$('industry').value,tools:[...selectedTools],tool_match:$('tool-match').value,categories:$('category').value?[$('category').value]:[],states:[$('state').value],scope:$('scope').value,confidence:Number($('confidence').value),min_employees:$('min-employees').value,max_employees:$('max-employees').value};}
-function validRange(){const f=filters();if(f.min_employees!==''&&f.max_employees!==''&&Number(f.min_employees)>Number(f.max_employees))throw new Error('Minimum employees cannot exceed maximum employees.');}
+function validRange(){const f=filters();for(const key of ['min_employees','max_employees'])if(f[key]!==''&&(!Number.isSafeInteger(Number(f[key]))||Number(f[key])<0))throw new Error('Employee limits must be whole numbers of zero or more.');if(f.min_employees!==''&&f.max_employees!==''&&Number(f.min_employees)>Number(f.max_employees))throw new Error('Minimum employees cannot exceed maximum employees.');}
 function options(node,values,first){const prior=node.value;node.replaceChildren();const o=el('option',first);o.value='';node.append(o);for(const value of [...new Set(values)].sort()){const n=el('option',value);n.value=value;node.append(n);}if(values.includes(prior))node.value=prior;}
 async function bootstrap(selectId){
  if(HOSTED){
   $('experience-choice').hidden=false;$('spend-consent-row').hidden=false;$('retry').hidden=true;$('retry-note').hidden=true;
-  $('runs').replaceChildren(new Option('Saved test run · 3 companies · 25 Oct 2026','test-sample'),new Option('Fictional walkthrough · 8 companies','demo'));
+  const sampleCount=window.TEST_REPORT.companies.length;
+  $('sample-summary').textContent=`${sampleCount} real companies · no API token or credits needed`;
+  $('runs').replaceChildren(new Option(`Saved test run · ${sampleCount} companies · 25 Oct 2026`,'test-sample'),new Option('Fictional walkthrough · 8 companies','demo'));
   if(browserOwnReport)$('runs').append(new Option('My latest research · this tab only','browser-live'));
   currentId=selectId||'test-sample';$('runs').value=currentId;$('allowance').value='0.5';$('domains').placeholder='example.com';
   $('cap-note').textContent='Total cap split between two Actors. Charges go to your Apify account. No scan starts automatically.';
@@ -33,7 +35,7 @@ async function loadView(reset=false){
   if(HOSTED){const report=reportForBrowser(),chosen=E.select(report,filters());data={report,catalog:E.catalog(report),selected_domains:chosen.map(c=>c.domain),table:E.table(report,chosen,filters())};}
   else data=await(await api('/api/view',{id:currentId,filters:filters()})).json();
   if(version!==refreshing)return;current=data;
-  if(reset){options($('category'),data.catalog.flatMap(t=>t.categories),'Any category');options($('country'),data.report.companies.map(c=>c.facts['HQ country']),'All countries');options($('industry'),data.report.companies.map(c=>c.facts.Industry),'All industries');}
+  if(reset){const before=JSON.stringify(filters());options($('category'),data.catalog.flatMap(t=>t.categories),'Any category');options($('country'),data.report.companies.map(c=>c.facts['HQ country']),'All countries');options($('industry'),data.report.companies.map(c=>c.facts.Industry),'All industries');if(JSON.stringify(filters())!==before)return loadView();}
   options($('tool'),data.catalog.map(t=>t.name).filter(n=>!selectedTools.includes(n)),'Choose another tool…');render();
  }catch(e){toast(e.message);}
 }
@@ -56,12 +58,12 @@ function render(){
  for(const row of table.rows){const r=el('tr'),domain=row[table.headers.indexOf('Domain')];for(const i of indexes){const value=row[i],td=el('td');td.title=String(value??'');if(i===0){const button=el('button',value);button.onclick=()=>detail(domain);td.append(button);}else if(['Detected','Not detected','Unknown'].includes(value))td.append(el('span',value,'pill '+({'Detected':'yes','Not detected':'no','Unknown':'unknown'}[value])));else td.textContent=String(value??'');r.append(td);}body.append(r);}
  $('empty').hidden=!!table.rows.length;$('company-table').hidden=!table.rows.length;$('excel').disabled=!table.rows.length;
 }
-function safeLink(href,label){try{const u=new URL(href);if(!['https:','http:'].includes(u.protocol))return el('span',label+' (not supplied)');const a=el('a',label,'source-link');a.href=u.href;a.target='_blank';a.rel='noopener noreferrer';return a;}catch{return el('span',label+' (not supplied)');}}
+function safeLink(href,label){try{const u=new URL(href);if(!['https:','http:'].includes(u.protocol)||u.username||u.password)return el('span',label+' (not supplied)');const a=el('a',label,'source-link');a.href=u.href;a.target='_blank';a.rel='noopener noreferrer';return a;}catch{return el('span',label+' (not supplied)');}}
 function detail(domain){
  const c=current.report.companies.find(c=>c.domain===domain);if(!c)return;$('detail-title').textContent=c.facts.Company;$('detail-domain').textContent=c.domain;const body=$('detail-body');body.replaceChildren();
  const b=E.brief(c,filters()),brief=el('section',undefined,'brief');brief.append(el('p','SHORTLIST RATIONALE · EXPLICIT RULES','eyebrow'),el('strong',b.assessment),el('p',b.angle),el('p','Next step: '+b.next));body.append(brief);
  const facts=el('div',undefined,'fact-grid');for(const key of ['Industry','Founded year','Founders','Employee size band','Employees on LinkedIn','Headquarters','Office countries (reported)','Company match','Website scan']){const block=el('div',undefined,'fact');block.append(el('span',key),el('strong',c.facts[key]));facts.append(block);}body.append(facts);
- if(c.facts['Founders']==='Unknown')body.append(el('p','Founder coverage: this provider does not supply founder names. A separate verified source is needed.','detail-note'));
+ if(c.facts['Founders']==='Unknown')body.append(el('p','Founder names were not included in this record. Check a verified source.','detail-note'));
  if(c.facts['Scan notes']!=='Unknown')body.append(el('p',c.facts['Scan notes'],'detail-note'));
  if(c.scan_status!=='Complete')body.append(el('p','Recovery: wait before trying again. The local Python app offers failed-site retries and independent DNS fallback. A browser scan cannot guarantee access to protected websites.','detail-note'));
  if(current.report.mode!=='synthetic'){const source=el('p');source.append(safeLink(c.facts['Company profile source'],'Company profile source'));body.append(source);}
@@ -89,7 +91,7 @@ function setExperience(mode){
  if(!live)$('api-token').value='';
 }
 $('choose-sample').onclick=()=>{setExperience('sample');currentId='test-sample';$('runs').value=currentId;resetFields();loadView(true);};
-$('choose-live').onclick=()=>{setExperience('live');$('api-token').focus();document.querySelector('.settings').open=true;};
+$('choose-live').onclick=()=>{setExperience('live');document.querySelector('.settings').open=true;$('api-token').focus();};
 $('clear-private').onclick=()=>{browserOwnReport=null;$('api-token').value='';$('domains').value='';$('run-links').replaceChildren();$('spend-consent').checked=false;resetFields();bootstrap('test-sample');toast('Browser results cleared. Data in your Apify account is unchanged.');};
 async function scanBrowser(){
  if(scanning)return;

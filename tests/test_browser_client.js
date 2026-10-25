@@ -29,7 +29,7 @@ function transport(options={}){
   assert.equal(client.domain('bücher.de'),'xn--bcher-kva.de');
  });
  await test('rejects credentials, IPs, private hosts and oversized batches',()=>{
-  for(const x of ['http://user:password@example.com','http://127.0.0.1','http://0x7f000001','file:///etc/passwd','a.local','example.com:9000'])assert.throws(()=>client.domain(x));
+  for(const x of ['http://user:password@example.com','http://127.0.0.1','http://127.1','http://0177.0.0.1','http://0x7f000001','file:///etc/passwd','a.local','example.com:9000','a'.repeat(64)+'.com'])assert.throws(()=>client.domain(x));
   assert.throws(()=>client.parseDomains('a.com\nb.com\nc.com\nd.com\ne.com\nf.com'));
  });
  await test('two capped starts, header-only token and valid normalized results',async()=>{
@@ -44,6 +44,22 @@ function transport(options={}){
  await test('unrecognized pricing starts no paid runs',async()=>{
   const t=transport({badPricing:true});await assert.rejects(client.collect({token:'unit-test-token',domains:['example.com'],...t}),/pricing/);assert.equal(t.calls.filter(c=>c.method==='POST').length,0);
  });
+ await test('slow response bodies time out before any paid run starts',async()=>{
+  const setTimer=global.setTimeout;global.setTimeout=(fn,ms,...args)=>setTimer(fn,Math.min(ms,10),...args);
+  let posts=0;
+  try{await assert.rejects(client.collect({token:'unit-test-token',domains:['example.com'],fetchImpl:async(url,request)=>{if(request.method==='POST')posts++;return {ok:true,json:()=>new Promise((resolve,reject)=>request.signal.addEventListener('abort',()=>reject(new Error('aborted')),{once:true}))};}}),/Could not reach Apify/);assert.equal(posts,0);}finally{global.setTimeout=setTimer;}
+ });
+ await test('larger batches get enough runtime and monitoring continues beyond six minutes',async()=>{
+  const t=transport();let polls=0;
+  const fetchImpl=async(url,request)=>{
+   if(request.method==='GET'&&url.includes('/actor-runs/')){polls++;return response({data:{status:polls>=125?'SUCCEEDED':'RUNNING',defaultDatasetId:'dataset-technology'}});}
+   const result=await t.fetchImpl(url,request);
+   if(request.method==='POST'&&url.includes('postatelier')){const data=await result.json();data.data.status='RUNNING';return response(data);}
+   return result;
+  };
+  await client.collect({token:'unit-test-token',domains:['example.com','b.com','c.com','d.com','e.com'],...t,fetchImpl,sleep:async()=>{}});
+  const starts=t.calls.filter(c=>c.method==='POST');assert.equal(new URL(starts[0].url).searchParams.get('timeout'),'435');assert.equal(new URL(starts[1].url).searchParams.get('timeout'),'300');assert.equal(polls,125);
+ });
  await test('ambiguous POST outcome is never retried or echoed',async()=>{
   const t=transport({networkFailure:true});await assert.rejects(client.collect({token:'unit-test-token',domains:['example.com'],...t}),/not retried/);assert.equal(t.calls.filter(c=>c.method==='POST').length,1);
  });
@@ -56,6 +72,11 @@ function transport(options={}){
  });
  await test('original source rows survive browser export chunking',()=>{
   const report=client.normalize(['example.com'],[],[{input:'example.com',long:'x'.repeat(70000)}]);const table=engine.table(report,report.companies,{},true),ids=table.headers.flatMap((x,i)=>x.startsWith('Full company source JSON')?[i]:[]);assert.equal(JSON.parse(ids.map(i=>table.rows[0][i]).join(''))[0].long.length,70000);
+ });
+ await test('Unicode survives UTF-8 encoding at source-cell boundaries',()=>{
+  const report=client.normalize(['example.com'],[],[]),original=[{long:'x'.repeat(11989)+'😀'.repeat(20000)}];report.companies[0].raw_company=original;
+  const table=engine.table(report,report.companies,{},true),ids=table.headers.flatMap((x,i)=>x.startsWith('Full company source JSON')?[i]:[]);
+  const restored=ids.map(i=>Buffer.from(table.rows[0][i],'utf8').toString('utf8')).join('');assert.deepEqual(JSON.parse(restored),original);
  });
  await test('no credential or result persistence APIs in the published client',()=>{
   const source=fs.readFileSync('static/browser-apify.js','utf8')+fs.readFileSync('static/app.js','utf8');for(const name of ['localStorage','sessionStorage','indexedDB','document.cookie'])assert.ok(!source.includes(name));
