@@ -109,7 +109,9 @@ def normalize(directory):
         for t in detections:
             if maybe_domain(t.get("url") or t.get("domain")) != domain:
                 continue
-            identity = (t.get("technology") or t.get("name"), t.get("foundIn"), str(t.get("detectedBy")))
+            # Same detector is not necessarily the same observation: confidence,
+            # page, evidence and timestamp can differ within one run.
+            identity = json.dumps(t, sort_keys=True)
             if identity in seen:
                 continue
             seen.add(identity)

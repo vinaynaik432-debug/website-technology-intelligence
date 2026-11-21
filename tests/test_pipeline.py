@@ -45,6 +45,19 @@ class Evidence(unittest.TestCase):
     def test_confidence_changes_result(self):
         self.assertEqual(detection_state(self.n,name='Example Analytics',confidence=0), 'Yes')
 
+    def test_distinct_observations_survive_reordering_and_exact_duplicates(self):
+        fixture = ROOT / 'tests/fixtures/basic'
+        row = json.loads((fixture/'technology.json').read_text())[0]
+        weak, strong = dict(row, confidence=35), dict(row, confidence=90)
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d)
+            (p/'manifest.json').write_bytes((fixture/'manifest.json').read_bytes())
+            for rows in ([weak, strong, weak], [strong, weak, strong]):
+                (p/'technology.json').write_text(json.dumps(rows))
+                company = normalize(p)['companies'][0]
+                self.assertEqual(sorted(t['confidence'] for t in company['technologies']), [35, 90])
+                self.assertEqual(detection_state(company, name='Example Analytics'), 'Yes')
+
     def test_filters_change_shortlist(self):
         self.assertEqual([c['domain'] for c in select_companies(self.report,tools=['Example Analytics'])],['acme.example.com'])
         self.assertEqual(len(select_companies(self.report,tools=['Example Analytics'],states=['Unknown'])),2)

@@ -24,6 +24,14 @@ function transport(options={}){
  return {calls,updates,fetchImpl,onRuns:r=>updates.push(r)};
 }
 (async()=>{
+ await test('shortlist uses all distinct observations within a run, in either order',()=>{
+  const row={url:'https://example.com',technology:'CRM',foundIn:'website',detectedBy:['scriptSrc'],status:'ok'};
+  for(const scores of [[35,90,35],[90,35,90]]){
+   const c=client.normalize(['example.com'],scores.map(confidence=>({...row,confidence})),[]).companies[0];
+   assert.deepEqual(c.technologies.map(t=>t.confidence).sort(),[35,90]);
+   assert.equal(engine.state(c,{name:'CRM'}),'Yes');
+  }
+ });
  await test('normalizes CSV, quoted values, duplicate URLs and IDN',()=>{
   assert.deepEqual(client.parseDomains('name,domain\n"Example, Inc",https://www.example.com/path\nExample,example.com'),['example.com']);
   assert.equal(client.domain('bücher.de'),'xn--bcher-kva.de');

@@ -130,6 +130,8 @@ The scanner's **0–100 score describes fingerprint matching**, not a calibrated
 
 Each company detail shows the method, collection time and original matching snippet **when supplied**. If the provider omits the snippet, the app says so. An observation without its underlying snippet has not been independently verified by this project.
 
+Within a run, exact duplicate observations collapse, but observations from the same detector with different evidence or scores are retained. For example, scores of 35 and 90 at a threshold of 50 give **Detected** in either input order, in the browser and in Python.
+
 ## Company data and completeness
 
 The current enrichment Actor matches a domain to company profiles and returns available fields including industry, founding year, employee range, LinkedIn-associated employee count, headquarters, offices and funding.
@@ -251,7 +253,7 @@ python3 -m unittest discover -s tests -v
 node tests/test_browser_client.js  # optional Node checks for the browser integration
 ```
 
-The release includes **30 Python tests and 12 browser-client checks** covering input normalization, ambiguous/missing data, tri-state evidence, AND/OR filtering, scope and confidence, browser/Python parity, Excel safety, public-demo isolation, budget reservations, non-retried run starts, cooldowns, DNS redaction and retry preservation. Regression checks also cover stalled response bodies, batch-size timeouts, bounded monitoring, malformed spending-cap acknowledgments, Excel cell limits and lossless Unicode source export, including raw chunks that begin with formula-like text. The Excel integration check needs the listed Python dependencies. Browser-client checks use a mocked transport to verify capped starts, header-only credentials, pricing checks, non-retried ambiguous POSTs, missing-cap aborts, complete source export and absence of browser persistence.
+The release includes **31 Python tests and 13 browser-client checks** covering input normalization, ambiguous/missing data, tri-state evidence, AND/OR filtering, scope and confidence, browser/Python parity, Excel safety, public-demo isolation, budget reservations, non-retried run starts, cooldowns, DNS redaction and retry preservation. Regression checks also cover stalled response bodies, batch-size timeouts, bounded monitoring, malformed spending-cap acknowledgments, Excel cell limits and lossless Unicode source export, including raw chunks that begin with formula-like text. The Excel integration check needs the listed Python dependencies. Browser-client checks use a mocked transport to verify capped starts, header-only credentials, pricing checks, non-retried ambiguous POSTs, missing-cap aborts, complete source export and absence of browser persistence.
 
 Node-dependent checks are skipped when Node is unavailable; Python application tests still run. Browser checks also verified the two-company AND result, five-company OR result and filtered Excel download. The downloaded workbook was reopened to verify both companies, both tool signals, frozen headers and filters.
 

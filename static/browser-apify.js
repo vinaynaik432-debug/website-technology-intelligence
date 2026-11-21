@@ -32,7 +32,7 @@
    let candidates=firmographics.filter(r=>maybeDomain(r.input)===d);if(!candidates.length)candidates=firmographics.filter(r=>maybeDomain(r.website)===d);
    const firm=candidates.length===1?candidates[0]:{},seen=new Set();
    const technologies=detections.filter(t=>maybeDomain(t.url||t.domain)===d).flatMap(t=>{
-    const identity=JSON.stringify([t.technology||t.name,t.foundIn,t.detectedBy]);if(seen.has(identity))return [];seen.add(identity);
+    const identity=JSON.stringify(t,(_key,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.entries(v).sort(([a],[b])=>a<b?-1:a>b?1:0)):v);if(seen.has(identity))return [];seen.add(identity);
     const cats=Array.isArray(t.categories)?t.categories.map(c=>typeof c==='object'?(c.name||'Uncategorized'):String(c)):[];
     return [{name:String(t.technology||t.name),categories:cats.length?cats:['Uncategorized'],confidence:t.confidence??null,location:t.foundIn||'unknown',version:t.version??null,detected_by:t.detectedBy||[],evidence:t.evidence??null,provider:'Apify technology Actor',implied_by:t.impliedBy||[],url:t.finalUrl||t.url,checked_at:t.checkedAt||createdAt}];
    });
